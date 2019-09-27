@@ -1,72 +1,66 @@
 {% extends 'base.html'%} {% block content %}
 
-<h3>Edit Task</h3>
+<h3>Edit Recipe</h3>
 <div class="row">
-    <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">poll</i>
-                <select id="category" name="category_name">
-                  <option value="" disabled selected>Choose Category</option>
-                  {% for cat in categories %}
-                      {% if cat.category_name == recipe.category_name%}
-                      <option value="{{cat.category_name}}" selected >{{cat.category_name}}</option>
-                      {% else %}
-                       <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-                    {% endif %}
-                  {% endfor %}
-                </select>
-                <label>Task Category</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
-                <input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{recipe.recipe_name}}">
-                <label for="icon_prefix">Task Name</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="recipe_description" id="recipe_description" class="materialize-textarea">{{recipe.recipe_description}}</textarea>
-                <label for="icon_telephone">Task Description</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">today</i>
-                <input id="due_date" name="due_date" type="text" class="datepicker">
-                <label for="icon_prefix">Due Date</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="switch">
-                <label>
-                    {% if recipe.is_urgent %}
-                          <input id="is_urgent" name="is_urgent" type="checkbox" checked>
-                    {% else %}
-                         <input id="is_urgent" name="is_urgent" type="checkbox">
-                    {% endif%}
-                  <span class="lever"></span>
-                  Is Urgent
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Edit Task
-                <i class="material-icons right">playlist_add</i>
-             </button>
-        </div>
-    </form>
+	<form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">ingredients</i>
+				<select id="recipe" name="recipe_name">
+					<option value="" disabled selected>Choose Recipe</option>
+					{% for recp in recipes %}
+					{% if recp.recipe_name == recipe.recipe_name%}
+					<option value="{{recp.recipe_name}}" selected>{{recp.recipe_name}}</option>
+					{% else %}
+					<option value="{{recp.recipe_name}}">{{recp.recipe_name}}</option>
+					{% endif %}
+					{% endfor %}
+				</select>
+				<label>Type Recipe</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">Type of food</i>
+				<input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{recipe.recipe_name}}">
+				<label for="icon_prefix">Recipe Name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">For how many</i>
+				<textarea name="recipe_preparation" id="recipe_preparation" class="materialize-textarea">{{recipe.recipe_preparation}}</textarea>
+				<label for="icon_telephone">Recipe Description</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">Menu</i>
+				<input id="recipe_time" name="recipe_time" type="text" class="datepicker">
+				<label for="icon_prefix">Recipe time</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="switch">
+				<label>
+					{% if recipe.allergens %}
+					<input id="allergens" name="careful" type="checkbox" checked>
+					{% else %}
+					<input id="allergens" name="careful" type="checkbox">
+					{% endif%}
+					<span class="lever"></span>
+					It might have allergens
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<button class="btn waves-effect waves-light" type="submit" name="action">Edit Recipe
+				<i class="material-icons right">playlist_add</i>
+			</button>
+		</div>
+	</form>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        due_date = Date.parse('{{recipe.due_date}}');
-        $('#due_date').pickadate('picker').set('select', due_date, { format: 'dd/mm/yyyy' }).trigger('change');
-    });
-</script>
 
 {% endblock %}
