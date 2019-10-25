@@ -2,55 +2,156 @@
 <html>
 
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="description" content="FlaskCookBook | A cookbook por Didacs followers">
+	<meta name="author" content="Leticia G Leon">
+	<title> FlaskCookBook | A cookbook por Didacs followers </title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css"/>
 </head>
 
 <body>
-	<header>
-		<nav>
-			<div class="nav-wrapper">
-				<a href="{{url_for('get_tasks')}}" class="brand-logo">DiDac Cook Book</a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="{{url_for('get_recipe')}}">Menu</a></li>
-					<li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
-					<li><a href="{{url_for('get_recipe')}}">Type of Food</a></li>
-					<li><a href="{{url_for('add_recipe')}}">Type of course</a></li>
-				</ul>
-				<ul class="side-nav" id="mobile-demo">
-					<li><a href="{{url_for('get_recipe')}}">Menu</a></li>
-					<li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
-					<li><a href="{{url_for('get_recipe')}}">Type of Food</a></li>
-					<li><a href="{{url_for('add_recipe')}}">Type of course</a></li>
-				</ul>
+<header>
+	<div class="navbar-fixed">
+		<nav class="nav-bar">
+			<div class="container">
+				<div class="nav-wrapper">
+					<a href="{{url_for('home_site')}}" class="brand-logo logo-color">Didac CookBook</a>
+					<a href="#" data-activates="mobile-nav" class="button-collapse right-align">
+						<i class="material-icons">menu</i>
+					</a>
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+						<li>
+							<a href="{{url_for('get_recipes')}}">Recipes</a>
+						<li>
+						<li>
+							<a href="{{url_for('home_site')}}">Menu</a>
+						<li>
+						<li>
+							<a href="{{url_for('home_site')}}">Main</a>
+						<li>
+						<li>
+							<a href="{{url_for('home_site')}}">Cusine</a>
+						<li>
+						<li>
+							<a href="{{url_for('login')}}">Log in / Sign up</a>
+						<li>
+						<li>
+							<a href="{{url_for('addrecipe')}}">New Recipe</a>
+						</li>
+						<li>
+							<form id="search-form" action="{{ url_for('get_recipes') }}" method="POST"
+							      class="col s12 search-form">
+								<input id="autocomplete-input" class="autocomplete search-input" type="search"
+								       name="search_text"
+								       placeholder="Search" required>
+							</form>
+						</li>
+						<li>
+							<a id="sendForm" for="submit-form" class="waves-effect search-submit-button"><i
+									class="material-icons right">search</i></a>
+						</li>
+					</ul>
+					<ul class="side-nav" id="mobile-nav">
+						<div class="mobile-nav">
+							<li>
+								<a href="{{url_for('home_site')}}">Home</a>
+							</li>
+							<li>
+								<a href="{{url_for('get_recipes')}}">Recipes</a>
+							</li>
+							<a>
+								<li class="divider"></li>
+								<li>
+									<a href="{{url_for('home_site')}}">Cuisines</a>
+								</li>
+								<li>
+									<form id="search-form" action="{{ url_for('home_site') }}" method="POST"
+									      class="col s12">
+										<input id="search" type="search" name="search_text" placeholder="Search"
+										       required>
+									</form>
+								</li>
+								<li>
+									<a id="sendForm" for="submit-form" class="waves-effect waves-light btn-small"><i
+											class="material-icons right">search</i></a>
+								
+								</li>
+						</div>
+					</ul>
+				</div>
 			</div>
 		</nav>
-	</header>
-	<div class="container">
-		{% block content %}{% endblock %}
 	</div>
-	<footer class="container-fluid footer">
+</header>
+<div class="container">
+	{% block content %}{% endblock %}
+</div>
+<div class="icon-bar show-on-small hide-on-med-and-up">
+        <a href="{{url_for('addrecipe')}}"><i class="fa fa-plus"></i></a>
+</div>
+<div class="fixed-action-btn hide-on-small-only">
+        <a class="btn-floating btn-large fab-button" href="{{url_for('addrecipe')}}">
+            <i class="fa fa-plus tooltipped" aria-hidden="true" data-position="left" data-tooltip="Add recipe"></i>
+        </a>
+</div>
+
+
+
+<footer class="page-footer mt-40 teal">
+	<div class="container">
 		<div class="row">
-			<div class="col-xs-12">
-				<h5 class="uppercase general-sub"></h5>
-				<p class="inline-block footer-middle">
-					Didac Copyright
-					didacook@gmail.com
-				</p>
+			<div class="col l6 s12">
+				<h6 class="white-text">Didac Cookbook</h6>
+				<div class="col l4 offset-l2 s12">
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="{{ url_for('signup') }}">Sign Up</a></li>
+						<li><a class="grey-text text-lighten-3" href="{{ url_for('login') }}">Login</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</footer>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-	<script type="text/javascript">
-	    $(document).ready(function () {
-	        $('.collapsible').collapsible();
-	        $('select').material_select();
-	        $(".button-collapse").sideNav();
-	    });
-	</script>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2019 Didac Verdager & LGL
+				<a class="grey-text text-lighten-4 right" href="https://github.com/kes2401/online-cookbook"
+				   target="_blank"><i class="fab fa-github"></i></a>
+			</div>
+		</div>
+</footer>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!-- Font awesome -->
+<script src="https://use.fontawesome.com/d46ec8e634.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+        $('select').material_select();
+        $(".button-collapse").sideNav();
+	    $('.fixed-action-btn').floatingActionButton();
+    });
+</script>
+<!-- Submit search form on click search icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sendForm").click(function () {
+                if ($('#sendFrom').html() != '') {
+                    $("#search-form").submit();
+                }
+            });
+        });
+        $(document).ready(function () {
+            $("#sendFormMobile").click(function () {
+                if ($('#sendFromMobile').html() != '') {
+                    $("#search-form-mobile").submit();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

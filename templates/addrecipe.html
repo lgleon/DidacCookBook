@@ -1,0 +1,84 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container form-container">
+    <div class="row margin-bottom-5vh">
+        <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s10 offset-s1 l8 offset-l2 add-recipe-form">
+            <div class="row">
+                <h5>Add recipe</h5>
+                <hr>
+                <div class="input-field col s12">
+                    <div class="input-field"><input id="title" name="title" type="text" value="" required>
+                        <label for="title">Name</label></div>
+                    <div class="input-field">
+                        <input id="description" name="description" type="text" value="" required>
+                        <label for="description">Description</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="method" name="method" type="text" value="" required>
+                        <label for="method">For how many people is this recipe</label>
+                    </div>
+                </div>
+                <div id="TextBoxesGroupIngredients">
+                    <!-- Ingredients -->
+                    <div class="input-field col s12" id="TextBoxDivIngredients">
+                        <input id="recipe_ingredient" name="ingredient" type="text" value="" required>
+                        <label for="recipe_ingredient">Ingredients</label>
+                        <div class="row">
+                            <a class="btn waves-effect waves-light btn-x-small" id="addIngredient"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></a>
+                            <a class="btn waves-effect waves-light btn-x-small red removeIngredientDiv" id="removeIngredient"
+                                style="display: none"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <div class="col s6 l3 input-field" id="recipe_meal">
+                        <select class="form-control" id="meal" name="meal" required>
+                            {% for meal in meals %}
+                            <option value="{{meal.meal}}">{{meal.meal}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col s6 l3 input-field">
+                        <input id="recipe_serves" name="serves" type="number" value="" required>
+                        <label for="recipe_serves">Serves</label>
+                    </div>
+
+                    <div class="col s6 l3 input-field">
+                        <input id="recipe_cook_time" name="cooking_time" type="number" value="" required>
+                        <label for="recipe_cook_time">Cooking time</label>
+                    </div>
+                    <div class="col s6 l3 input-field">
+                        <input id="recipe_prep_time" name="prep_time" type="number" value="" required>
+                        <label for="recipe_prep_time">Prep time</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-field col s12 l5">
+                <select id="cuisine_name" name="cuisine" required>
+                    {% for cuisine in cuisines %}
+                    <option value="{{cuisine.cuisine_name}}">{{cuisine.cuisine_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- User -->
+            <div class="input-field col s12 l5 offset-l2">
+                <select id="user_name" name="user" required>
+                    {% for user in users %}
+                    <option value="{{user.user_name}}">{{user.user_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- File uploads -->
+            <div class="row add-recipe-submit-btns center-align">
+                <button class="btn waves-effect waves-light hvr-icon-up" type="submit" name="">Submit
+                    <i class="fa fa-paper-plane-o hvr-icon"></i>
+                </button>
+                <a href="{{url_for('get_recipes')}}" class="btn waves-effect waves-light red">Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}
