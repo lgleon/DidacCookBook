@@ -24,7 +24,7 @@
 					</a>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
 						<li>
-							<a href="{{url_for('get_recipes')}}">Recipes</a>
+							<a href="{{url_for('get_recipe')}}">Recipes</a>
 						<li>
 						<li>
 							<a href="{{url_for('home_site')}}">Menu</a>
@@ -42,7 +42,7 @@
 							<a href="{{url_for('addrecipe')}}">New Recipe</a>
 						</li>
 						<li>
-							<form id="search-form" action="{{ url_for('get_recipes') }}" method="POST"
+							<form id="search-form" action="{{ url_for('get_recipe') }}" method="POST"
 							      class="col s12 search-form">
 								<input id="autocomplete-input" class="autocomplete search-input" type="search"
 								       name="search_text"
@@ -60,7 +60,7 @@
 								<a href="{{url_for('home_site')}}">Home</a>
 							</li>
 							<li>
-								<a href="{{url_for('get_recipes')}}">Recipes</a>
+								<a href="{{url_for('get_recipe')}}">Recipes</a>
 							</li>
 							<a>
 								<li class="divider"></li>

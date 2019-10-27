@@ -15,14 +15,28 @@ app = Flask(__name__)
 #collection = database["recipe"]
 #recipes = collection.find({})
 
-app.config["MONGO_DBNAME"] = 'DiDacsCookBook'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/DiDacsCookBook?retryWrites=true&w=majority')
+
+##################################################################
+
+#app.config["MONGO_DBNAME"] = 'DiDacsCookBook'
+#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
+# This part is for the connection to atlas MondoDB (remote DB)
+#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/DiDacsCookBook?retryWrites=true&w=majority')
 
 #client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 #db = client.didaccookbook
 
-mongo = PyMongo(app)
+#mongo = PyMongo(app)
+
+#########################################################################
+#Connecting to the local MondoDB
+
+uri = "mongodb://127.0.0.1:27017"
+client = pymongo.MongoClient(uri)
+db = client.didaccookbook
+#database = client["el_luis"]
+#collection = database["new"]
+#recipes = collection.find({})
 
 '''
 To test if the connection with our local mongpdb is working, we can use this for loop
@@ -47,29 +61,37 @@ def home_site():
 
 # Get all recipes
 #Recipe Menu, recipe search big subgroups
-@app.route('/get_recipes')
-def get_recipes():
-    return render_template("recipes.html",
-                           recipes=mongo.db.recipes.find())
+#@app.route('/get_recipes')
+#def get_recipes():
+#    return render_template("recipes.html",
+#                           recipes=mongo.db.recipes.find())
+#render recipe
+@app.route('/get_recipe')
+def get_recipe():
+    cursor = db.recipe.find()
+    print( "Numero de documentos en la colecttion: ", cursor.count())
+    #results = database.new.find({})
+    return render_template("recipe.html",
+                           recipes = cursor)
 
 
 #Get Recipes by Menu
 @app.route('/menu_recipes')
 def menu_recipes():
     return render_template("menu_recipes.html",
-                           recipes=mongo.db.recipe.find())
+                           recipes=db.recipe.find())
 
 #Get Recipes by main course
 @app.route('/main_course')
 def main_course():
     return render_template("main_course.html",
-                           recipes=mongo.db.recipe.find())
+                           recipes=db.recipe.find())
 
 #Get Recipes by Cuisine type
 @app.route('/cusine')
 def cusines():
     return render_template("cusine.html",
-                           recipes=mongo.db.recipe.find())
+                           recipes=db.recipe.find())
 
 
 
@@ -94,7 +116,7 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        users = mongo.db.users
+        users = db.users
         login_user = users.find_one({'name': request.form['username']})
 
         if login_user:
@@ -108,7 +130,7 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        users = mongo.db.users
+        users = db.users
         existing_user = users.find_one({'name': request.form['username']})
 
         if existing_user is None:
@@ -133,7 +155,7 @@ def addrecipe():
 # Submit add recipe form
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
-    recipes = mongo.db.recipes
+    recipes = db.recipe
 
     recipe_name = request.form['name']
     recipe_description = request.form['description']
@@ -162,7 +184,7 @@ def insert_recipe():
     }
 
     recipes.insert_one(recipe_form)
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('get_recipe'))
 
 
 

@@ -3,9 +3,29 @@
     margin-top: 5px;
 }
 */
-body {
-    font-family: 'Ubuntu', sans-serif;
+
+
+/*
+This small part is for the recipe render, I need to adap with all the rest */
+body{
+    font-family: Verdana; color: slategray;
 }
+
+#recipe-name{
+    font-weight: bold;
+    font-size: 300%;
+    text-align: center;
+}
+
+#preparation{
+    font-family: sans-serif;
+    font-style: italic; ;
+}
+
+
+
+/*
+This small part is for the recipe render, I need to adap with all the rest */
 
 .input-field{
     font-size: 16px;
