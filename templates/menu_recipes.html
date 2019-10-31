@@ -1,66 +1,96 @@
-{% extends 'base.html'%} {% block content %}
+{% extends 'base.html' %} {% block content %}
 
-<h3>Edit Recipe</h3>
-<div class="row">
-	<form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
-		<div class="row">
-			<div class="input-field col s12">
-				<i class="material-icons prefix">ingredients</i>
-				<select id="recipe" name="recipe_name">
-					<option value="" disabled selected>Choose Recipe</option>
-					{% for recp in recipes %}
-					{% if recp.recipe_name == recipe.recipe_name%}
-					<option value="{{recp.recipe_name}}" selected>{{recp.recipe_name}}</option>
-					{% else %}
-					<option value="{{recp.recipe_name}}">{{recp.recipe_name}}</option>
-					{% endif %}
-					{% endfor %}
-				</select>
-				<label>Type Recipe</label>
+<header class="header-text center-align teal-text text-darken-4">
+	<h1>Recipe List</h1>
+	<p class="lrg-paragraph-txt"><strong>Search recipes by type of Type of Dish</strong></p>
+</header>
+
+<div class="container col s12 m10 offset-m1 grey lighten-5 content-container" id="recipe-search">
+	<div class="row mb-10">
+		
+		{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+		{% for category, message in messages %}
+		<p class="flashes {{ category }}">{{ message }}</p>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		
+		<form>
+			<div class="col s7 m4">
+				<div class="input-field col s12" id="menu_recipes-select">
+					<select id="menu_recipes-filter" name="menu_recipes_select">
+						<option value="" disabled selected>Dish option</option>
+						{% for dish in dishes %}
+						<option value="{{ dish_type }}">{{ dish_type }}</option>
+						{% endfor %}
+					</select>
+					<label for="menu_recipes-filter">Filter by Dish Type</label>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<i class="material-icons prefix">Type of food</i>
-				<input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{recipe.recipe_name}}">
-				<label for="icon_prefix">Recipe Name</label>
+			<div class="col s5 m2">
+				<button class="btn waves-effect waves-light submit-btn mt-20" type="submit" id="dish-filter-btn">
+					Filter
+				</button>
 			</div>
+		</form>
+	
+	</div>
+	<div class="row mb-10">
+		<div class="col s12 m6 center-align">
+			<form>
+				<p class="teal-text text-darken-4">Sort All Recipes By: </p>
+				<button class="btn waves-effect waves-light btn-small" type="submit" name="sort" value="asc">A-Z
+				</button>
+				<button class="btn waves-effect waves-light btn-small" type="submit" name="sort" value="dsc">Z-A
+				</button>
+			</form>
 		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<i class="material-icons prefix">For how many</i>
-				<textarea name="recipe_preparation" id="recipe_preparation" class="materialize-textarea">{{recipe.recipe_preparation}}</textarea>
-				<label for="icon_telephone">Recipe Description</label>
-			</div>
+		
+		<div class="col s12 m6 grey-text text-darken-2 center-align s-mt-20">
+			<a href="{{ url_for('menu_recipes') }}" class="waves-effect waves-light btn-small ml-20">Reset</a>
+			<p class="mt-30"><strong>
+				{% if recipes|length <= 0 %}
+				0 Results found...
+				{% elif recipes|length == 1 %}
+				1 Result found...
+				{% else %}
+				{{recipes|length}} Results found...
+				{% endif %}
+			</strong></p>
 		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<i class="material-icons prefix">Menu</i>
-				<input id="recipe_time" name="recipe_time" type="text" class="datepicker">
-				<label for="icon_prefix">Recipe time</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="switch">
-				<label>
-					{% if recipe.allergens %}
-					<input id="allergens" name="careful" type="checkbox" checked>
-					{% else %}
-					<input id="allergens" name="careful" type="checkbox">
-					{% endif%}
-					<span class="lever"></span>
-					It might have allergens
-				</label>
-			</div>
-		</div>
-		<div class="row">
-			<button class="btn waves-effect waves-light" type="submit" name="action">Edit Recipe
-				<i class="material-icons right">playlist_add</i>
-			</button>
-		</div>
-	</form>
+	</div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container col s12 m10 offset-m1 grey-text text-darken-2 content-container mt-20">
+	<div class="row">
+		
+		{% if recipes|length <= 0 %}
+		<p class="grey-text text-darken-4 center-align"><strong>There are no recipes matching this criteria</strong></p>
+		{% else %}
+		{% for recipe in recipes %}
+		<div class="col s12 m6 l6 xl4 recipe-card">
+			<div class="card">
+				<div class="card-image">
+					<img src="{{ recipe.image_url }}" alt="{{ recipe.name }}">
+				</div>
+				<div class="card-content">
+					<h6>{{ recipe.name}}</h6>
+					<p class="grey-text">{{ recipe.description }}</p>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+	
+	{% if recipes|length > 6 %}
+	<div class="center-align">
+		<ul class="pagination">
+			<li id="prev-page" class="disabled"><a href="javascript:void(0)" aria-label="Previous"><i
+					class="material-icons">chevron_left</i></a></li>
+		</ul>
+	</div>
+	{% endif %}
 
-{% endblock %}
+</div>

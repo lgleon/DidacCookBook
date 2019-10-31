@@ -1,11 +1,8 @@
 import os
-import pymongo
-from flask import Flask, render_template, redirect, url_for, request, session, g, flash
-from flask_pymongo import PyMongo
+
 import bcrypt
-from bson.objectid import ObjectId
-from passlib.hash import pbkdf2_sha256
-from functools import wraps
+import pymongo
+from flask import Flask, render_template, redirect, url_for, request, session, g
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -78,22 +75,22 @@ def get_recipe():
 @app.route('/recipes')
 def recipes():
     recipes = list(db.recipe.find())
-    for arg in request.args:
-        if 'recipe_search' in arg:
-            new_recipe_list = []
-            query = request.args['recipe_search']
-            for recipe in recipes:
-                if recipe['recipe_name'].lower().find(query.lower()) != -1:
-                    new_recipe_list.append(recipe)
-            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+    print(request.args)
+    if 'recipe_search' in request.args:
+        query = request.args['recipe_search']
+        new_recipe_list = []
+        for recipe in recipes:
+            if recipe['name'].lower().find(query.lower()) != -1:
+                new_recipe_list.append(recipe)
+        return render_template('recipes.html', recipes=new_recipe_list)
 
-        elif 'sort' in arg:
-            if request.args['sort'] == 'asc':
-                new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.ASCENDING))
-                return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
-            elif request.args['sort'] == 'dsc':
-                new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.DESCENDING))
-                return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+    elif 'sort' in request.args:
+        if request.args['sort'] == 'asc':
+            new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.ASCENDING))
+            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+        elif request.args['sort'] == 'dsc':
+            new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.DESCENDING))
+            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
 
     return render_template('recipes.html', recipes=recipes, )
 
@@ -103,38 +100,29 @@ def recipes():
 #Get Recipes by Menu
 @app.route('/menu_recipes')
 def menu_recipes():
+    dish_type = []
+    for recipe in db.recipe.find():
+        dish_type.append(recipe['dish_type'])
     return render_template("menu_recipes.html",
                            recipes=db.recipe.find())
 
 #Get Recipes by main course
 @app.route('/main_course')
 def main_course():
+    courses = []
+    for recipe in db.recipe.find():
+        courses.append(recipe['main_course'])
     return render_template("main_course.html",
                            recipes=db.recipe.find())
 
 #Get Recipes by Cuisine type
 @app.route('/cusine')
 def cusine():
-        cuisines = list(db.cuisines.find().sort('cuisine', pymongo.ASCENDING))
-        recipes = list(db.recipe.find())
-        for arg in request.args:
-            if 'recipe_search' in arg:
-                new_recipe_list = []
-                query = request.args['recipe_search']
-                for recipe in recipes:
-                    if recipe['recipe_name'].lower().find(query.lower()) != -1:
-                        new_recipe_list.append(recipe)
-                return render_template('cusine.html', cuisines=cuisines)
-
-            elif 'sort' in arg:
-                if request.args['sort'] == 'asc':
-                    new_recipe_list = list(db.recipes.find().sort('name', pymongo.ASCENDING))
-                    return render_template('cusine.html', cuisines=cuisines)
-                elif request.args['sort'] == 'dsc':
-                    new_recipe_list = list(db.recipes.find().sort('name', pymongo.DESCENDING))
-                    return render_template('cusine.html', cuisines=cuisines)
-
-        return render_template('cusine.html', cuisines=cuisines )
+    cuisines = []
+    # cuisines = list(db.cuisines.find().sort('cuisine', pymongo.ASCENDING))
+    for recipe in db.recipe.find():
+        cuisines.append(recipe['cusine'])
+    return render_template('cusine.html', cuisines=cuisines)
 
 
 

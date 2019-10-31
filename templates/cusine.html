@@ -22,7 +22,7 @@
                         <select id="cuisine-filter" name="cuisine_select">
                             <option value="" disabled selected>Cuisine</option>
                             {% for cuisine in cuisines %}
-                            <option value="{{ cuisines.type }}">{{ cuisines.type }}</option>
+                            <option value="{{ cuisine }}">{{ cuisine }}</option>
                             {% endfor %}
                         </select>
                         <label for="cuisine-filter">Filter by Cuisine</label>
@@ -89,9 +89,3 @@
         {% endif %}
         
     </div>
-    
-    {% if user %}
-        <a href="{{ url_for('add_recipe') }}" class="btn-floating btn-large waves-effect waves-light z-depth-4 add-recipe-btn"><i class="material-icons">add</i></a>
-    {% endif %}
-    
-{% endblock %}tml>
