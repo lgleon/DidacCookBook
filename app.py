@@ -8,7 +8,7 @@ from passlib.hash import pbkdf2_sha256
 from functools import wraps
 
 app = Flask(__name__)
-
+app.secret_key = os.urandom(24)
 #uri = "mongodb://127.0.0.1:27017"
 #client = pymongo.MongoClient(uri)
 #database = client["didaccookbook"]
@@ -160,10 +160,9 @@ def index():
 def login():
     if request.method == 'POST':
         users = db.users
-        login_user = users.find_one({'name': request.form['username']})
-
+        login_user = users.find_one({'username': request.form['username']})
         if login_user:
-            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+            if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
                 session['username'] = request.form['username']
                 return redirect(url_for('home_site'))
 
