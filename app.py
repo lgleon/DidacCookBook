@@ -103,8 +103,7 @@ def menu_recipes():
     dish_type = []
     for recipe in db.recipe.find():
         dish_type.append(recipe['dish_type'])
-    return render_template("menu_recipes.html",
-                           recipes=db.recipe.find())
+    return render_template("menu_recipes.html", dish_type=dish_type)
 
 #Get Recipes by main course
 @app.route('/main_course')
@@ -112,8 +111,7 @@ def main_course():
     courses = []
     for recipe in db.recipe.find():
         courses.append(recipe['main_course'])
-    return render_template("main_course.html",
-                           recipes=db.recipe.find())
+    return render_template("main_course.html", courses=courses)
 
 #Get Recipes by Cuisine type
 @app.route('/cusine')
@@ -129,12 +127,12 @@ def cusine():
 ########## Log in and Add recipe(only if you are sign in)
 
 # Manage session user
-#@app.before_request
-#def before_request():
-#    g.user = None
-#    if 'username' in session:
-#        g.user = session['username']
-#        return 'You are logged in as ' + session['username']
+@app.before_request
+def before_request():
+    g.user = None
+    if 'username' in session:
+        db.users = session['username']
+        return 'You are logged in as ' + session['username']
 
 @app.route('/home')
 def index():

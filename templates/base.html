@@ -24,10 +24,10 @@
 					</a>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
 						<li>
-							<a href="{{url_for('get_recipe')}}">Recipes</a>
+							<a href="{{url_for('recipes')}}">Recipes</a>
 						<li>
 						<li>
-							<a href="{{url_for('recipes')}}">Menu</a>
+							<a href="{{url_for('menu_recipes')}}">Menu</a>
 						<li>
 						<li>
 							<a href="{{url_for('main_course')}}">Main</a>
@@ -48,25 +48,17 @@
 								<a href="{{url_for('home_site')}}">Home</a>
 							</li>
 							<li>
-								<a href="{{url_for('get_recipe')}}">Recipes</a>
+								<a href="{{url_for('recipes')}}">Recipes</a>
 							</li>
-							<a>
-								<li class="divider"></li>
-								<li>
-									<a href="{{url_for('cusine')}}">Cuisines</a>
-								</li>
-								<li>
-									<form id="search-form" action="{{ url_for('home_site') }}" method="POST"
-									      class="col s12">
-										<input id="search" type="search" name="search_text" placeholder="Search"
-										       required>
-									</form>
-								</li>
-								<li>
-									<a id="sendForm" for="submit-form" class="waves-effect waves-light btn-small"><i
-											class="material-icons right">search</i></a>
-								
-								</li>
+							<li>
+								<a href="{{url_for('cusine')}}">Cuisines</a>
+							</li>
+							<li>
+								<a href="{{url_for('menu_recipes')}}">Food type</a>
+							</li>
+							<li>
+								<a href="{{url_for('main_course')}}">Course type</a>
+							</li>
 						</div>
 					</ul>
 				</div>
@@ -76,14 +68,6 @@
 </header>
 <div class="container">
 	{% block content %}{% endblock %}
-</div>
-<div class="icon-bar show-on-small hide-on-med-and-up">
-        <a href="{{url_for('addrecipe')}}"><i class="fa fa-plus"></i></a>
-</div>
-<div class="fixed-action-btn hide-on-small-only">
-        <a class="btn-floating btn-large fab-button" href="{{url_for('addrecipe')}}">
-            <i class="fa fa-plus tooltipped" aria-hidden="true" data-position="left" data-tooltip="Add recipe"></i>
-        </a>
 </div>
 
 
