@@ -3,6 +3,8 @@ from bson.objectid import ObjectId
 import bcrypt
 import pymongo
 from flask import Flask, render_template, redirect, url_for, request, session, g
+from config import Config
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -12,16 +14,18 @@ app.secret_key = os.urandom(24)
 #collection = database["recipe"]
 #recipes = collection.find({})
 
+app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
+app.config.from_object(Config)
 
 ##################################################################
 
 #app.config["MONGO_DBNAME"] = 'DiDacsCookBook'
-app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
+#app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
 #app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
 # This part is for the connection to atlas MondoDB (remote DB)
 #app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/DiDacsCookBook?retryWrites=true&w=majority')
 
-client = pymongo.MongoClient(os.getenv('MONGO_URI'))
+#client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 #db = client.didaccookbook
 
 #mongo = PyMongo(app)
