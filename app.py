@@ -60,17 +60,18 @@ def home_site():
 @app.route('/get_recipe/')
 def get_recipe():
     cursor = db.recipe.find()
-    print( "Numero de documentos en la colecttion: ", cursor.count())
+    print( "Numero de documentos en la collection: ", cursor.count())
     return render_template("recipe.html",
                            recipes = cursor)
 
-@app.route('/recipe/<recipe_id>/')
-def recipe(recipe_id):
-    one_recipe = db.recipe.find_one({'_id': ObjectId(recipe_id)})
-    recipe_id = str(one_recipe['recipe_id'])
+#@app.route('/recipe/<recipe_id>/')
+#def recipe(recipe_id):
+#    print(recipe_id)
+#    one_recipe = db.recipe.find_one({'_id': ObjectId(recipe_id)})
+#    recipe_id = str(one_recipe['recipe_id'])
     #cursor = db.recipe.find()
     #print( "Numero de documentos en la colecttion: ", cursor.count())
-    return render_template('recipe.html', recipe=one_recipe, recipe_id=recipe_id )
+#    return render_template('recipe.html', recipe=one_recipe, recipe_id=recipe_id )
 
 
 # Get all recipes
@@ -219,6 +220,7 @@ def insert_recipe():
     }
 
     recipes.insert_one(recipe_form)
+    print(recipe_id)
     return redirect(url_for('recipes'))
 
 

@@ -70,7 +70,7 @@
                         <div class="card-content">
                             <h6>{{ recipe.name}}</h6>
                             <p class="grey-text">{{ recipe.description }}</p>
-                            <button class="btn btn-small" type="submit"><a href="/recipe/{{ 'recipe._id'}}" class=" btn-small m-4">View</a></button>
+                            <button class="btn btn-small" type="submit"><a href="{{ url_for('get_recipe')}}" class=" btn-small m-4">View</a></button>
                         </div>
                     </div>
                 </div>
