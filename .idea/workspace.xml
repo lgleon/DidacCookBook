@@ -41,7 +41,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -50,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="3" selection-start-column="3" selection-end-column="3" />
+              <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -273,7 +273,7 @@
       <workItem from="1569311035781" duration="1823000" />
       <workItem from="1569313388855" duration="41702000" />
       <workItem from="1569869628920" duration="23473000" />
-      <workItem from="1570730647110" duration="66088000" />
+      <workItem from="1570730647110" duration="66365000" />
     </task>
     <task id="LOCAL-00001" summary="logIn works">
       <created>1572520666372</created>
@@ -307,7 +307,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142559000" />
+    <option name="totallyTimeSpent" value="142836000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -322,7 +322,7 @@
     <frame x="0" y="23" width="1260" height="760" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14367816" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14367816" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" weight="0.18692373" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -338,7 +338,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32934132" />
       <window_info anchor="bottom" id="DB Execution Console" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4995809" visible="true" weight="0.23652695" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4995809" visible="true" weight="0.23652695" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50041914" side_tool="true" weight="0.2979042" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32934132" />
       <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32934132" />
@@ -512,17 +512,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3" selection-start-column="3" selection-end-column="3" />
         </state>
       </provider>
     </entry>
