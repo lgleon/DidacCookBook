@@ -16,11 +16,12 @@ app.secret_key = os.urandom(24)
 ##################################################################
 
 #app.config["MONGO_DBNAME"] = 'DiDacsCookBook'
+app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
 #app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
 # This part is for the connection to atlas MondoDB (remote DB)
 #app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/DiDacsCookBook?retryWrites=true&w=majority')
 
-#client = pymongo.MongoClient(os.getenv('MONGO_URI'))
+client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 #db = client.didaccookbook
 
 #mongo = PyMongo(app)
