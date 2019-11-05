@@ -2,21 +2,20 @@
 
 	<div class="row">
 		<dl class="collapsible" data-collapsible="accordion">
-			{% for r in recipes %}
-			<dt><h3 id="recipe-name">  {{ r.name }} </h3></dt>
-			<dt><span class="n_service" id="n_service">This recipe is for {{ r.n_service }} people</span></dt>
+			<dt><h3 id="recipe-name">  {{ recipe.name }} </h3></dt>
+			<dt><span class="n_service" id="n_service">This recipe is for {{ recipe.n_service }} people</span></dt>
 			<dt>
 				<form action="" method="POST">
 					<label>If you want a different number of service, tell me: </label>
 					<input id='new_service' type="number" name='new_service'
-					       value="{{ r.n_service }}"/>
+					       value="{{ recipe.n_service }}"/>
 					<input id='original_service' type="hidden" name='original_service'
-					       value="{{ r.n_service }}"/>
+					       value="{{ recipe.n_service }}"/>
 				</form>
 			</dt>
 			<dt><h5>Preparation time:</h5></dt>
 				<ul class="preparation_time">
-					{% for p in r.prep_time %}
+					{% for p in recipe.prep_time %}
 						<li>
 							<span id='p_time'>{{ p.p_time }}</span>
 							<span id='tm_unit'>{{ p.tm_unit }}</span></li>
@@ -24,23 +23,23 @@
 				</ul>
 				<dt><h5>Cooking time:</h5></dt>
 				<ul class="cooking_time">
-					{% for c in r.cook_time %}
+					{% for c in recipe.cook_time %}
 						<li>
 							<span id='c_time'>{{ c.c_time }}</span>
 							<span id='time_unit'>{{ c.time_unit }}</span></li>
 					{% endfor %}
 				</ul>
 				<dt><h5>World cuisine:</h5></dt>
-			<dt>{{ r.cusine }}</dt>
+			<dt>{{ recipe.cusine }}</dt>
 				<dt><h5>Level of Difficulty</h5></dt>
-			<dt>{{ r.level }}</dt>
+			<dt>{{ recipe.level }}</dt>
 				<dt><h5>Main Course:</h5></dt>
-			<dt>{{ r.main_course }}</dt>
+			<dt>{{ recipe.main_course }}</dt>
 			<dt><h5>Ingredients:</h5></dt>
 			<i aria-hidden="true" class="fa fa-list"> </i>
 			<dt>
 				<ul class="ingredient-list">
-					{% for i in r.ingredients %}
+					{% for i in recipe.ingredients %}
 						<li>
 							<span id='qty'>{{ i.quantity }}</span>
 							<span id='unit'>{{ i.unit }}</span>
@@ -49,8 +48,7 @@
 				</ul>
 			</dt>
 				<dt ><h5>Recipe Preparation:</h5></dt><i class="fa fa-check-circle-o" aria-hidden="true"></i>
-			<dt id="preparation"> <p>{{ r.preparation }}</p></dt>
-			{% endfor %}
+			<dt id="preparation"> <p>{{ recipe.preparation }}</p></dt>
 			<script>
                 // este es el jquery para acceeder al numero de servicio I can see the values in the console
                 //$('.old_service li span#n_service').each(function (index, element) {

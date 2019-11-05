@@ -14,8 +14,8 @@ app.secret_key = os.urandom(24)
 #collection = database["recipe"]
 #recipes = collection.find({})
 
-app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
-app.config.from_object(Config)
+#app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
+#app.config.from_object(Config)
 
 ##################################################################
 
@@ -62,21 +62,21 @@ def home_site():
 
 
 #render recipe
-@app.route('/get_recipe/')
-def get_recipe():
-    cursor = db.recipe.find()
-    print( "Numero de documentos en la collection: ", cursor.count())
-    return render_template("recipe.html",
-                           recipes = cursor)
+#@app.route('/get_recipe/')
+#def get_recipe():
+#    cursor = db.recipe.find()
+#    print( "Numero de documentos en la collection: ", cursor.count())
+#    return render_template("recipe.html",
+#                          recipes = cursor)
 
-#@app.route('/recipe/<recipe_id>/')
-#def recipe(recipe_id):
-#    print(recipe_id)
-#    one_recipe = db.recipe.find_one({'_id': ObjectId(recipe_id)})
-#    recipe_id = str(one_recipe['recipe_id'])
+@app.route('/recipe/<recipe_id>/')
+def recipe(recipe_id):
+    print(recipe_id)
+    one_recipe = db.recipe.find_one({'_id': ObjectId(recipe_id)})
+    #recipe_id = str(one_recipe['recipe_id'])
     #cursor = db.recipe.find()
     #print( "Numero de documentos en la colecttion: ", cursor.count())
-#    return render_template('recipe.html', recipe=one_recipe, recipe_id=recipe_id )
+    return render_template('recipe.html', recipe=one_recipe )
 
 
 # Get all recipes
