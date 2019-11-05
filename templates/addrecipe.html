@@ -1,26 +1,27 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container form-container">
     <div class="row margin-bottom-5vh">
-        <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s10 offset-s1 l8 offset-l2 add-recipe-form">
+        <form action="{{ url_for('insert_recipe') }}" name="recipe" method="POST" class="col s10 offset-s1 l8 offset-l2 add-recipe-form">
             <div class="row">
                 <h5>Add recipe</h5>
                 <hr>
                 <div class="input-field col s12">
-                    <div class="input-field"><input id="title" name="title" type="text" value="" required>
-                        <label for="title">Name</label></div>
                     <div class="input-field">
-                        <input id="description" name="description" type="text" value="" required>
+                        <input id="name " name="name" type="text" value="test" required>
+                        <label for="name">Name</label></div>
+                    <div class="input-field">
+                        <input id="description" name="description" type="text" value="test" required>
                         <label for="description">Description</label>
                     </div>
                     <div class="input-field">
-                        <input id="preparation" name="preparation" type="text" value="" required>
+                        <input id="preparation" name="preparation" type="text" value="test" required>
                         <label for="preparation">Explain how to prepare this recipe</label>
                     </div>
                 </div>
                 <div id="TextBoxesGroupIngredients">
                     <!-- Ingredients -->
                     <div class="input-field col s12" id="TextBoxDivIngredients">
-                        <input id="recipe_ingredient" name="ingredient" type="text" value="" required>
+                        <input id="recipe_ingredient" name="ingredient" type="text" value="test" required>
                         <label for="recipe_ingredient">Ingredients</label>
                         <div class="row">
                             <a class="btn waves-effect waves-light btn-x-small" id="addIngredient"><i class="fa fa-plus"
@@ -39,7 +40,7 @@
                         </select>
                     </div>
                     <div class="col s6 l3 input-field" id="m_courses">
-                        <select class="form-control" id="m_course" name="m_course" required>
+                        <select class="form-control" id="main_course" name="main_course" required>
                             {% for course in courses %}
                             <option value="{{course}}">{{course}}</option>
                             {% endfor %}
@@ -48,35 +49,20 @@
                 </div>
                 <div class="input-field col s12">
                     <div class="col s6 l3 input-field">
-                        <input id="recipe_serves" name="serves" type="number" value="" required>
+                        <input id="recipe_serves" name="serves" type="number" value="1" required>
                         <label for="recipe_serves">Serves</label>
                     </div>
                     <div class="col s6 l3 input-field">
-                        <input id="recipe_cook_time" name="cooking_time" type="number" value="" required>
+                        <input id="recipe_cook_time" name="cooking_time" type="number" value="1" required>
                         <label for="recipe_cook_time">Cooking time</label>
                     </div>
                     <div class="col s6 l3 input-field">
-                        <input id="recipe_prep_time" name="prep_time" type="number" value="" required>
+                        <input id="recipe_prep_time" name="prep_time" type="number" value="1" required>
                         <label for="recipe_prep_time">Prep time</label>
                     </div>
                 </div>
             </div>
-            <div class="input-field col s12 l5">
-                <label for="recipe_cuisine">Cuisine</label>
-                <select id="cuisine_name" name="cuisine" required>
-                    {% for cuisine in cuisines %}
-                    <option value="{{cuisine}}">{{cuisine}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <!-- User -->
-            <div class="input-field col s12 l5 offset-l2">
-                <select id="user_name" name="user" required>
-                    {% for username in usernames %}
-                    <option value="{{username}}">{{username}}</option>
-                    {% endfor %}
-                </select>
-            </div>
+ 
             <!-- File uploads -->
             <div class="row add-recipe-submit-btns center-align">
                 <button class="btn waves-effect waves-light hvr-icon-up" type="submit" name="">Submit

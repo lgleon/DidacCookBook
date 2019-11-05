@@ -88,7 +88,6 @@ def recipe(recipe_id):
 @app.route('/recipes')
 def recipes():
     recipes = list(db.recipe.find())
-    print(request.args)
     if 'recipe_search' in request.args:
         query = request.args['recipe_search']
         new_recipe_list = []
@@ -191,49 +190,41 @@ def signup():
 @app.route('/addrecipe')
 def addrecipe():
     dish_types=set()
-    courses=set()
+    courses=["Vegeterian", "Vegan", "MEEEEEEAAAAT"]
     for recipe in db.recipe.find():
         dish_types.add(recipe['dish_type'])
-        courses.add(recipe['main_course'])
     return render_template("addrecipe.html", courses=courses, dish_types=dish_types)
 
 
 # Submit add recipe form
-@app.route('/insert_recipe', methods=['POST'])
+@app.route('/insert_recipe', methods=['POST', 'GET'])
 def insert_recipe():
     recipes = db.recipe
 
+
     recipe_name = request.form['name']
     recipe_description = request.form['description']
-    recipe_serving = request.form['n_service']
+    recipe_serving = request.form['serves']
     recipe_dish = request.form['dish_type']
     recipe_prep_time = request.form['prep_time']
     recipe_cook_time = request.form['cooking_time']
-    recipe_cuisine = request.form['cuisine']
-    recipe_level = request.form['level']
-    recipe_main_course = request.form['m_course']
+    recipe_main_course = request.form['main_course']
     recipe_ingredient = request.form['ingredient']
     recipe_preparation = request.form['preparation']
-    recipe_user = request.form['user']
-
-
+    
     recipe_form = {
         "name": recipe_name,
         "description": recipe_description,
-        "n_service": recipe_serving,
+        "serves": recipe_serving,
         "dish_type": recipe_dish,
         "cooking-time": recipe_cook_time,
         "prep-time": recipe_prep_time,
-        "cuisine": recipe_cuisine,
-        "level": recipe_level,
-        "m_course": recipe_main_course,
+        "main_course": recipe_main_course,
         "ingredients": recipe_ingredient,
         "preparation": recipe_preparation,
-        "user": recipe_user,
     }
 
     recipes.insert_one(recipe_form)
-    print(recipe_id)
     return redirect(url_for('recipes'))
 
 
