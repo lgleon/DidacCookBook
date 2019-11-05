@@ -116,15 +116,14 @@ def menu_recipes():
     dish_types = []
     for recipe in db.recipe.find():
         dish_types.append(recipe['dish_type'])
-    print(dish_types)
     return render_template("menu_recipes.html", dish_types=dish_types)
 
 #Get Recipes by main course
 @app.route('/main_course')
 def main_course():
-    courses = []
+    courses = set()
     for recipe in db.recipe.find():
-        courses.append(recipe['main_course'])
+        courses.add(recipe['main_course'])
     return render_template("main_course.html", courses=courses)
 
 #Get Recipes by Cuisine type
@@ -191,7 +190,12 @@ def signup():
 #Add recipe, only if a member or resgister user
 @app.route('/addrecipe')
 def addrecipe():
-    return render_template("addrecipe.html")
+    dish_types=set()
+    courses=set()
+    for recipe in db.recipe.find():
+        dish_types.add(recipe['dish_type'])
+        courses.add(recipe['main_course'])
+    return render_template("addrecipe.html", courses=courses, dish_types=dish_types)
 
 
 # Submit add recipe form

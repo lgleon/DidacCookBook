@@ -31,16 +31,14 @@
                     </div>
                 </div>
                 <div class="input-field col s12">
-                    <div class="col s6 l3 input-field" id="dish_type">
-                        <label for="recipe_dish">Type of Dish</label>
+                    <div class="col s6 l3 input-field" id="dish_types">
                         <select class="form-control" id="dish_type" name="dish_type" required>
-                            {% for dish in dishes %}
-                            <option value="{{dish}}">{{dish}}</option>
+                            {% for dish_type in dish_types %}
+                            <option value="{{dish_type}}">{{dish_type}}</option>
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="col s6 l3 input-field" id="m_course">
-                        <label for="recipe_main_course">Type of food</label>
+                    <div class="col s6 l3 input-field" id="m_courses">
                         <select class="form-control" id="m_course" name="m_course" required>
                             {% for course in courses %}
                             <option value="{{course}}">{{course}}</option>
