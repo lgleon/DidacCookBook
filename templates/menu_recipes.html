@@ -2,34 +2,34 @@
 
 <header class="header-text center-align teal-text text-darken-4">
 	<h1>Recipe List</h1>
-	<p class="lrg-paragraph-txt"><strong>Search recipes by type of Type of Dish</strong></p>
+	<p class="lrg-paragraph-txt"><strong>Search recipes by type of type of meal</strong></p>
 </header>
 
 <div class="container col s12 m10 offset-m1 grey lighten-5 content-container" id="recipe-search">
 	<div class="row mb-10">
 		
 		{% with messages = get_flashed_messages(with_categories=true) %}
-		{% if messages %}
-		{% for category, message in messages %}
-		<p class="flashes {{ category }}">{{ message }}</p>
-		{% endfor %}
-		{% endif %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<p class="flashes {{ category }}">{{ message }}</p>
+				{% endfor %}
+			{% endif %}
 		{% endwith %}
 		
 		<form>
 			<div class="col s7 m4">
 				<div class="input-field col s12" id="menu_recipes-select">
 					<select id="menu_recipes-filter" name="menu_recipes_select">
-						<option value="" disabled selected>Dish option</option>
-						{% for dish in dishes %}
-						<option value="{{ dish_type }}">{{ dish_type }}</option>
+						<option value="" disabled selected>dish </option>
+						{% for dish_type in dish_types %}
+							<option value="{{ dish_type }}">{{ dish_type }} </option>
 						{% endfor %}
 					</select>
-					<label for="menu_recipes-filter">Filter by Dish Type</label>
+					<label for="menu_recipes-filter">Filter by meal type</label>
 				</div>
 			</div>
 			<div class="col s5 m2">
-				<button class="btn waves-effect waves-light submit-btn mt-20" type="submit" id="dish-filter-btn">
+				<button class="btn waves-effect waves-light submit-btn mt-20" type="submit" id="cusine-filter-btn">
 					Filter
 				</button>
 			</div>
@@ -48,7 +48,7 @@
 		</div>
 		
 		<div class="col s12 m6 grey-text text-darken-2 center-align s-mt-20">
-			<a href="{{ url_for('menu_recipes') }}" class="waves-effect waves-light btn-small ml-20">Reset</a>
+			<a href="{{ url_for('recipes') }}" class="waves-effect waves-light btn-small ml-20">Reset</a>
 			<p class="mt-30"><strong>
 				{% if recipes|length <= 0 %}
 				0 Results found...
@@ -83,7 +83,7 @@
 		{% endfor %}
 		{% endif %}
 	</div>
-	
+</div>
 	{% if recipes|length > 6 %}
 	<div class="center-align">
 		<ul class="pagination">

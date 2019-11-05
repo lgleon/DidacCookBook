@@ -113,10 +113,11 @@ def recipes():
 #Get Recipes by Menu
 @app.route('/menu_recipes')
 def menu_recipes():
-    dish_type = []
+    dish_types = []
     for recipe in db.recipe.find():
-        dish_type.append(recipe['dish_type'])
-    return render_template("menu_recipes.html", dish_type=dish_type)
+        dish_types.append(recipe['dish_type'])
+    print(dish_types)
+    return render_template("menu_recipes.html", dish_types=dish_types)
 
 #Get Recipes by main course
 @app.route('/main_course')
@@ -201,19 +202,22 @@ def insert_recipe():
     recipe_name = request.form['name']
     recipe_description = request.form['description']
     recipe_serving = request.form['n_service']
+    recipe_dish = request.form['dish_type']
     recipe_prep_time = request.form['prep_time']
     recipe_cook_time = request.form['cooking_time']
     recipe_cuisine = request.form['cuisine']
-    recipe_level = request.form('level')
-    recipe_main_course = request.form('m_course')
-    recipe_ingredient = request.form('ingredient')
+    recipe_level = request.form['level']
+    recipe_main_course = request.form['m_course']
+    recipe_ingredient = request.form['ingredient']
     recipe_preparation = request.form['preparation']
     recipe_user = request.form['user']
+
 
     recipe_form = {
         "name": recipe_name,
         "description": recipe_description,
         "n_service": recipe_serving,
+        "dish_type": recipe_dish,
         "cooking-time": recipe_cook_time,
         "prep-time": recipe_prep_time,
         "cuisine": recipe_cuisine,

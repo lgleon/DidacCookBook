@@ -13,8 +13,8 @@
                         <label for="description">Description</label>
                     </div>
                     <div class="input-field">
-                        <input id="method" name="method" type="text" value="" required>
-                        <label for="method">For how many people is this recipe</label>
+                        <input id="preparation" name="preparation" type="text" value="" required>
+                        <label for="preparation">Explain how to prepare this recipe</label>
                     </div>
                 </div>
                 <div id="TextBoxesGroupIngredients">
@@ -31,18 +31,28 @@
                     </div>
                 </div>
                 <div class="input-field col s12">
-                    <div class="col s6 l3 input-field" id="recipe_meal">
-                        <select class="form-control" id="meal" name="meal" required>
-                            {% for meal in meals %}
-                            <option value="{{meal.meal}}">{{meal.meal}}</option>
+                    <div class="col s6 l3 input-field" id="dish_type">
+                        <label for="recipe_dish">Type of Dish</label>
+                        <select class="form-control" id="dish_type" name="dish_type" required>
+                            {% for dish in dishes %}
+                            <option value="{{dish}}">{{dish}}</option>
                             {% endfor %}
                         </select>
                     </div>
+                    <div class="col s6 l3 input-field" id="m_course">
+                        <label for="recipe_main_course">Type of food</label>
+                        <select class="form-control" id="m_course" name="m_course" required>
+                            {% for course in courses %}
+                            <option value="{{course}}">{{course}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="input-field col s12">
                     <div class="col s6 l3 input-field">
                         <input id="recipe_serves" name="serves" type="number" value="" required>
                         <label for="recipe_serves">Serves</label>
                     </div>
-
                     <div class="col s6 l3 input-field">
                         <input id="recipe_cook_time" name="cooking_time" type="number" value="" required>
                         <label for="recipe_cook_time">Cooking time</label>
@@ -54,17 +64,18 @@
                 </div>
             </div>
             <div class="input-field col s12 l5">
+                <label for="recipe_cuisine">Cuisine</label>
                 <select id="cuisine_name" name="cuisine" required>
                     {% for cuisine in cuisines %}
-                    <option value="{{cuisine.cuisine_name}}">{{cuisine.cuisine_name}}</option>
+                    <option value="{{cuisine}}">{{cuisine}}</option>
                     {% endfor %}
                 </select>
             </div>
             <!-- User -->
             <div class="input-field col s12 l5 offset-l2">
                 <select id="user_name" name="user" required>
-                    {% for user in users %}
-                    <option value="{{user.user_name}}">{{user.user_name}}</option>
+                    {% for username in usernames %}
+                    <option value="{{username}}">{{username}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -73,8 +84,6 @@
                 <button class="btn waves-effect waves-light hvr-icon-up" type="submit" name="">Submit
                     <i class="fa fa-paper-plane-o hvr-icon"></i>
                 </button>
-                <a href="{{url_for('get_recipe')}}" class="btn waves-effect waves-light red">Cancel
-                </a>
             </div>
         </form>
     </div>
