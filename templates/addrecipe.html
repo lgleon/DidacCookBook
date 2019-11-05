@@ -17,6 +17,10 @@
                         <input id="preparation" name="preparation" type="text" value="test" required>
                         <label for="preparation">Explain how to prepare this recipe</label>
                     </div>
+                    <div class="col s6 l3 input-field" id="cusine">
+                        <input id="recipe_cusine" name="cusine" type="text" value="test" required>
+                        <label for="recipe_cusine">Cuisine</label>
+                    </div>
                 </div>
                 <div id="TextBoxesGroupIngredients">
                     <!-- Ingredients -->
@@ -32,33 +36,41 @@
                     </div>
                 </div>
                 <div class="input-field col s12">
-                    <div class="col s6 l3 input-field" id="dish_types">
+                    <div class="col s4 l3 input-field" id="dish_types">
                         <select class="form-control" id="dish_type" name="dish_type" required>
                             {% for dish_type in dish_types %}
                             <option value="{{dish_type}}">{{dish_type}}</option>
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="col s6 l3 input-field" id="m_courses">
+                    <div class="col s4 l3 input-field" id="m_courses">
                         <select class="form-control" id="main_course" name="main_course" required>
                             {% for course in courses %}
                             <option value="{{course}}">{{course}}</option>
                             {% endfor %}
                         </select>
                     </div>
+                    <div class="col s4 l3 input-field" id="level">
+                        <select class="form-control" id="level" name="level" required>
+                            {% for level in levels %}
+                            <option value="{{level}}">{{level}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
+
                 <div class="input-field col s12">
                     <div class="col s6 l3 input-field">
-                        <input id="recipe_serves" name="serves" type="number" value="1" required>
-                        <label for="recipe_serves">Serves</label>
+                        <input id="serves" name="serves" type="number" value="1" required>
+                        <label for="serves">Serves</label>
                     </div>
                     <div class="col s6 l3 input-field">
-                        <input id="recipe_cook_time" name="cooking_time" type="number" value="1" required>
-                        <label for="recipe_cook_time">Cooking time</label>
+                        <input id="cooking_time" name="cooking_time" type="number" value="1" required>
+                        <label for="cooking_time">Cooking time</label>
                     </div>
                     <div class="col s6 l3 input-field">
-                        <input id="recipe_prep_time" name="prep_time" type="number" value="1" required>
-                        <label for="recipe_prep_time">Prep time</label>
+                        <input id="prep_time" name="prep_time" type="number" value="1" required>
+                        <label for="prep_time">Prep time</label>
                     </div>
                 </div>
             </div>

@@ -189,11 +189,12 @@ def signup():
 #Add recipe, only if a member or resgister user
 @app.route('/addrecipe')
 def addrecipe():
-    dish_types=set()
-    courses=["Vegeterian", "Vegan", "MEEEEEEAAAAT"]
-    for recipe in db.recipe.find():
-        dish_types.add(recipe['dish_type'])
-    return render_template("addrecipe.html", courses=courses, dish_types=dish_types)
+    dish_types=["Startes", "Soup", "Salad", "Main", "Dessert"]
+    courses=["MEEEEEEAAAAT Lovers", "Vegeterian", "Vegan"]
+    levels=["easy", "medium", "medium-expert", "expert", "5stars michellin"]
+    """for recipe in db.recipe.find():
+        dish_types.add(recipe['dish_type'])"""
+    return render_template("addrecipe.html", courses=courses, dish_types=dish_types, levels=levels, users=db.users.find())
 
 
 # Submit add recipe form
@@ -201,13 +202,14 @@ def addrecipe():
 def insert_recipe():
     recipes = db.recipe
 
-
     recipe_name = request.form['name']
     recipe_description = request.form['description']
     recipe_serving = request.form['serves']
     recipe_dish = request.form['dish_type']
     recipe_prep_time = request.form['prep_time']
     recipe_cook_time = request.form['cooking_time']
+    recipe_cusine = request.form['cusine']
+    recipe_level = request.form['level']
     recipe_main_course = request.form['main_course']
     recipe_ingredient = request.form['ingredient']
     recipe_preparation = request.form['preparation']
@@ -217,10 +219,12 @@ def insert_recipe():
         "description": recipe_description,
         "serves": recipe_serving,
         "dish_type": recipe_dish,
-        "cooking-time": recipe_cook_time,
         "prep-time": recipe_prep_time,
+        "cooking-time": recipe_cook_time,
+        "cusine": recipe_cusine,
+        "level": recipe_level,
         "main_course": recipe_main_course,
-        "ingredients": recipe_ingredient,
+        "ingredient": recipe_ingredient,
         "preparation": recipe_preparation,
     }
 
