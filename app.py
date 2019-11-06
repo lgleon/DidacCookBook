@@ -211,7 +211,9 @@ def insert_recipe():
     recipe_cusine = request.form['cusine']
     recipe_level = request.form['level']
     recipe_main_course = request.form['main_course']
-    recipe_ingredient = request.form['ingredient']
+    recipe_ingredient_name = request.form['ingredient_name']
+    recipe_ingredient_quantity = request.form['ingredient_quantity']
+    recipe_ingredient_unit = request.form['ingredient_unit']
     recipe_preparation = request.form['preparation']
     
     recipe_form = {
@@ -224,7 +226,11 @@ def insert_recipe():
         "cusine": recipe_cusine,
         "level": recipe_level,
         "main_course": recipe_main_course,
-        "ingredient": recipe_ingredient,
+        "ingredients": [{
+            "ingredient_name": recipe_ingredient_name,
+            "ingredient_quantity": recipe_ingredient_quantity,
+            "ingredient_unit": recipe_ingredient_unit,
+        }],
         "preparation": recipe_preparation,
     }
 
