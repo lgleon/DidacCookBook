@@ -233,11 +233,7 @@ def insert_recipe():
         "cusine": recipe_cusine,
         "level": recipe_level,
         "main_course": recipe_main_course,
-        "ingredients": ingredients, #[{
-            #"ingredient_name": recipe_ingredient_name,
-            #"ingredient_quantity": recipe_ingredient_quantity,
-            #"ingredient_unit": recipe_ingredient_unit,
-        #}],
+        "ingredients": ingredients,
         "preparation": recipe_preparation,
     }
 

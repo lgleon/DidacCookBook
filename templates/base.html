@@ -107,6 +107,25 @@
         $(".button-collapse").sideNav();
 	    $('.fixed-action-btn').floatingActionButton();
     });
+    
+    $(document).ready(function () {
+	    $("#addIngredient").click(function () {
+		   $("#TextBoxDivIngredients").after('<div class="input-field col s12" id="TextBoxDivIngredients">\n' +
+               '                        <div class="col s4 l3 input-field" id="ingredient_name">\n' +
+               '                            <input id="recipe_ingredient_name" name="ingredient_name[]" type="text" value="tomato" required>\n' +
+               '                            <label for="recipe_ingredient_name">Ingredients </label>\n' +
+               '                        </div>\n' +
+               '                        <div class="col s4 l3 input-field" id="ingredient_quantity">\n' +
+               '                            <input id="recipe_ingredient_quantity" name="ingredient_quantity[]" type="text" value="100" required>\n' +
+               '                            <label for="recipe_ingredient_quantity">quantity</label>\n' +
+               '                        </div>\n' +
+               '                        <div class="col s4 l3 input-field" id="ingredient_unit">\n' +
+               '                            <input id="recipe_ingredient_unit" name="ingredient_unit[]" type="text" value="g" required>\n' +
+               '                            <label for="recipe_ingredient_unit">units</label>\n' +
+               '                        </div>\n' +
+               '                    </div>')
+	    });
+    });
 </script>
 <!-- Submit search form on click search icon -->
     <script type="text/javascript">

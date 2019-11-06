@@ -1,4 +1,9 @@
 {% extends 'base.html' %} {% block content %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        alert("hello");
+    });
+</script>
 <div class="container form-container">
     <div class="row margin-bottom-5vh">
         <form action="{{ url_for('insert_recipe') }}" name="recipe" method="POST" class="col s10 offset-s1 l8 offset-l2 add-recipe-form">
@@ -38,20 +43,7 @@
                             <label for="recipe_ingredient_unit">units</label>
                         </div>
                     </div>
-                    <div class="input-field col s12" id="TextBoxDivIngredients2">
-                        <div class="col s4 l3 input-field" id="ingredient_name">
-                            <input id="recipe_ingredient_name" name="ingredient_name[]" type="text" value="beans" required>
-                            <label for="recipe_ingredient_name">Ingredients </label>
-                        </div>
-                        <div class="col s4 l3 input-field" id="ingredient_quantity">
-                            <input id="recipe_ingredient_quantity" name="ingredient_quantity[]" type="text" value="150" required>
-                            <label for="recipe_ingredient_quantity">quantity</label>
-                        </div>
-                        <div class="col s4 l3 input-field" id="ingredient_unit">
-                            <input id="recipe_ingredient_unit" name="ingredient_unit[]" type="text" value="g" required>
-                            <label for="recipe_ingredient_unit">units</label>
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <a class="btn waves-effect waves-light btn-x-small" id="addIngredient"><i class="fa fa-plus"
                                 aria-hidden="true"></i></a>
@@ -59,6 +51,7 @@
                             style="display: none"><i class="fa fa-minus" aria-hidden="true"></i></a>
                     </div>
                 </div>
+                
                 <div class="input-field col s12">
                     <div class="col s4 l3 input-field" id="dish_types">
                         <select class="form-control" id="dish_type" name="dish_type" required>
