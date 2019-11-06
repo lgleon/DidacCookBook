@@ -26,23 +26,37 @@
                     <!-- Ingredients -->
                     <div class="input-field col s12" id="TextBoxDivIngredients">
                         <div class="col s4 l3 input-field" id="ingredient_name">
-                            <input id="recipe_ingredient_name" name="ingredient_name" type="text" value="test" required>
+                            <input id="recipe_ingredient_name" name="ingredient_name[]" type="text" value="tomato" required>
                             <label for="recipe_ingredient_name">Ingredients </label>
                         </div>
                         <div class="col s4 l3 input-field" id="ingredient_quantity">
-                            <input id="recipe_ingredient_quantity" name="ingredient_quantity" type="text" value="test" required>
+                            <input id="recipe_ingredient_quantity" name="ingredient_quantity[]" type="text" value="100" required>
                             <label for="recipe_ingredient_quantity">quantity</label>
                         </div>
                         <div class="col s4 l3 input-field" id="ingredient_unit">
-                            <input id="recipe_ingredient_unit" name="ingredient_unit" type="text" value="test" required>
+                            <input id="recipe_ingredient_unit" name="ingredient_unit[]" type="text" value="g" required>
                             <label for="recipe_ingredient_unit">units</label>
                         </div>
-                        <div class="row">
-                            <a class="btn waves-effect waves-light btn-x-small" id="addIngredient"><i class="fa fa-plus"
-                                    aria-hidden="true"></i></a>
-                            <a class="btn waves-effect waves-light btn-x-small red removeIngredientDiv" id="removeIngredient"
-                                style="display: none"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="input-field col s12" id="TextBoxDivIngredients2">
+                        <div class="col s4 l3 input-field" id="ingredient_name">
+                            <input id="recipe_ingredient_name" name="ingredient_name[]" type="text" value="beans" required>
+                            <label for="recipe_ingredient_name">Ingredients </label>
                         </div>
+                        <div class="col s4 l3 input-field" id="ingredient_quantity">
+                            <input id="recipe_ingredient_quantity" name="ingredient_quantity[]" type="text" value="150" required>
+                            <label for="recipe_ingredient_quantity">quantity</label>
+                        </div>
+                        <div class="col s4 l3 input-field" id="ingredient_unit">
+                            <input id="recipe_ingredient_unit" name="ingredient_unit[]" type="text" value="g" required>
+                            <label for="recipe_ingredient_unit">units</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a class="btn waves-effect waves-light btn-x-small" id="addIngredient"><i class="fa fa-plus"
+                                aria-hidden="true"></i></a>
+                        <a class="btn waves-effect waves-light btn-x-small red removeIngredientDiv" id="removeIngredient"
+                            style="display: none"><i class="fa fa-minus" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="input-field col s12">
