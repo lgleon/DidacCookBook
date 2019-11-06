@@ -33,7 +33,8 @@ app.secret_key = os.urandom(24)
 #########################################################################
 #Connecting to the local MondoDB
 
-uri = "mongodb://127.0.0.1:27017"
+#uri = "mongodb://127.0.0.1:27017"
+uri = "mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/test?retryWrites=true&w=majority"
 client = pymongo.MongoClient(uri)
 db = client.didaccookbook
 #database = client["el_luis"]
