@@ -20,13 +20,13 @@
             <form action="{{ url_for('signup') }}" method="POST">
                 <div class="input-field col s12">
                     <i class="material-icons prefix teal-text text-darken-1">account_circle</i>
-                    <input id="username" name="username" type="text" class="validate" autocomplete="off" minlength="6" maxlength="16" pattern="^[a-zA-Z0-9]*$" autofocus>
+                    <input id="username" name="username" type="text" class="validate" autocomplete="off" minlength="6" pattern="^[a-zA-Z0-9]*$" autofocus>
                     <label for="username">Username</label>
                     <span class="helper-text" data-error="There's something wrong here..." data-success="This looks ok!">Up to 16 alphanumeric characters allowed (minimum 6), no spaces</span>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix teal-text text-darken-1">lock_open</i>
-                    <input id="password" type="password" name="password" class="validate" minlength="8" maxlength="16" pattern='^[a-zA-Z0-9!@#$&()\\-`.+,/\"]*$'>
+                    <input id="password" type="password" name="password" class="validate" minlength="8" pattern='^[a-zA-Z0-9!@#$&()\\-`.+,/\"]*$'>
                     <label for="password">Password</label>
                     <span class="helper-text" data-error="There's something wrong here..." data-success="This looks ok!">Must be 8-16 characters long, of alphanumeric and special characters</span>
                 </div>

@@ -36,6 +36,7 @@ app.secret_key = os.urandom(24)
 #uri = "mongodb://127.0.0.1:27017"
 #client = pymongo.MongoClient(uri)
 #db = client.didaccookbook
+#mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/didaccookbook?retryWrites=true&w=majority
 uri = "mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/didaccookbook?retryWrites=true&w=majority"
 client = pymongo.MongoClient(uri)
 db = client.didaccookbook
@@ -57,7 +58,7 @@ for recipe in recipes:
 
 # Render the home page
 @app.route('/')
-def home_site():
+def home():
     return render_template("home.html")
 
 
@@ -90,6 +91,7 @@ def recipe(recipe_id):
 #                           recipes=mongo.db.recipes.find())
 @app.route('/recipes')
 def recipes():
+    print("test")
     recipes = list(db.recipe.find())
     if 'recipe_search' in request.args:
         query = request.args['recipe_search']
@@ -102,10 +104,10 @@ def recipes():
     elif 'sort' in request.args:
         if request.args['sort'] == 'asc':
             new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.ASCENDING))
-            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines)
         elif request.args['sort'] == 'dsc':
             new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.DESCENDING))
-            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines)
 
     return render_template('recipes.html', recipes=recipes, )
 
@@ -144,17 +146,15 @@ def cusine():
 # Manage session user
 @app.before_request
 def before_request():
-    g.user = None
     if 'username' in session:
-        db.users = session['username']
-        return 'You are logged in as ' + session['username']
+        g.user = session['username']
 
 @app.route('/home')
 def index():
     if 'username' in session:
-        return 'You are logged in as ' + session['username']
+        return 'You are logged in as dddddd' + session['username']
 
-    return render_template('home_site.html')
+    return render_template('home.html')
 
 # To log in in case user is already resgister
 @app.route('/login', methods=['POST', 'GET'])
@@ -165,7 +165,7 @@ def login():
         if login_user:
             if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
                 session['username'] = request.form['username']
-                return redirect(url_for('home_site'))
+                return redirect(url_for('home'))
 
         #return 'Invalid username/password combination'
     return render_template('login.html')
@@ -174,11 +174,12 @@ def login():
 def signup():
     if request.method == 'POST':
         users = db.users
-        existing_user = users.find_one({'name': request.form['username']})
+        existing_user = users.find_one({'username': request.form['username']})
+        print(existing_user)
 
         if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name': request.form['username'], 'password': hashpass})
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'username': request.form['username'], 'password': hashpass})
             session['username'] = request.form['username']
             return redirect(url_for('login'))
 
