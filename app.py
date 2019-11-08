@@ -75,23 +75,14 @@ def home():
 
 @app.route('/recipe/<recipe_id>/')
 def recipe(recipe_id):
-    print(recipe_id)
     one_recipe = db.recipe.find_one({'_id': ObjectId(recipe_id)})
     #recipe_id = str(one_recipe['recipe_id'])
-    #cursor = db.recipe.find()
-    #print( "Numero de documentos en la colecttion: ", cursor.count())
     return render_template('recipe.html', recipe=one_recipe )
 
 
 # Get all recipes
-#Recipe Menu, recipe search big subgroups
-#@app.route('/get_recipes')
-#def get_recipes():
-#    return render_template("recipes.html",
-#                           recipes=mongo.db.recipes.find())
 @app.route('/recipes')
 def recipes():
-    print("test")
     recipes = list(db.recipe.find())
     if 'recipe_search' in request.args:
         query = request.args['recipe_search']
@@ -117,9 +108,9 @@ def recipes():
 #Get Recipes by Menu
 @app.route('/menu_recipes')
 def menu_recipes():
-    dish_types = []
+    dish_types = set()
     for recipe in db.recipe.find():
-        dish_types.append(recipe['dish_type'])
+        dish_types.add(recipe['dish_type'])
     return render_template("menu_recipes.html", dish_types=dish_types)
 
 #Get Recipes by main course
@@ -133,10 +124,9 @@ def main_course():
 #Get Recipes by Cuisine type
 @app.route('/cusine')
 def cusine():
-    cuisines = []
-    # cuisines = list(db.cuisines.find().sort('cuisine', pymongo.ASCENDING))
+    cuisines = set()
     for recipe in db.recipe.find():
-        cuisines.append(recipe['cusine'])
+        cuisines.add(recipe['cusine'])
     return render_template('cusine.html', cuisines=cuisines)
 
 
@@ -152,7 +142,7 @@ def before_request():
 @app.route('/home')
 def index():
     if 'username' in session:
-        return 'You are logged in as dddddd' + session['username']
+        return 'You are logged in as' + session['username']
 
     return render_template('home.html')
 
@@ -175,7 +165,6 @@ def signup():
     if request.method == 'POST':
         users = db.users
         existing_user = users.find_one({'username': request.form['username']})
-        print(existing_user)
 
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
@@ -187,14 +176,17 @@ def signup():
 
     return render_template('signup.html')
 
-
+@app.route('/logout')
+def logout():
+    del session["username"]
+    return redirect(url_for('home'))
 
 
 #Add recipe, only if a member or resgister user
 @app.route('/addrecipe')
 def addrecipe():
     dish_types=["Startes", "Soup", "Salad", "Main", "Dessert"]
-    courses=["MEEEEEEAAAAT Lovers", "Vegeterian", "Vegan"]
+    courses=["Meat Lovers", "Vegeterian", "Vegan"]
     levels=["easy", "medium", "medium-expert", "expert", "5stars michellin"]
     """for recipe in db.recipe.find():
         dish_types.add(recipe['dish_type'])"""
@@ -211,29 +203,29 @@ def insert_recipe():
     recipe_serving = request.form['serves']
     recipe_dish = request.form['dish_type']
     recipe_prep_time = request.form['prep_time']
-    recipe_cook_time = request.form['cooking_time']
+    recipe_cook_time = request.form['cook_time']
     recipe_cusine = request.form['cusine']
     recipe_level = request.form['level']
     recipe_main_course = request.form['main_course']
-    recipe_ingredient_name = request.form.getlist('ingredient_name[]')
-    recipe_ingredient_quantity = request.form.getlist('ingredient_quantity[]')
-    recipe_ingredient_unit = request.form.getlist('ingredient_unit[]')
+    recipe_ingredient_name = request.form.getlist('name[]')
+    recipe_ingredient_quantity = request.form.getlist('quantity[]')
+    recipe_ingredient_unit = request.form.getlist('unit[]')
     recipe_preparation = request.form['preparation']
     ingredients = []
 
     for i, name in enumerate(recipe_ingredient_name):
         ingredients.append({
-            'ingredient_name': recipe_ingredient_name[i],
-            'ingredient_quantity' : recipe_ingredient_quantity[i],
-            'ingredient_unit': recipe_ingredient_unit[i]
+            'name': recipe_ingredient_name[i],
+            'quantity' : recipe_ingredient_quantity[i],
+            'unit': recipe_ingredient_unit[i]
         })
     recipe_form = {
         "name": recipe_name,
         "description": recipe_description,
         "serves": recipe_serving,
         "dish_type": recipe_dish,
-        "prep-time": recipe_prep_time,
-        "cooking-time": recipe_cook_time,
+        "prep_time": recipe_prep_time,
+        "cook_time": recipe_cook_time,
         "cusine": recipe_cusine,
         "level": recipe_level,
         "main_course": recipe_main_course,

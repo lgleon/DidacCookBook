@@ -36,13 +36,20 @@
 							<a href="{{url_for('cusine')}}">Cusine</a>
 						<li>
 						<li>
+							{% if g.user %}
+							<a href="{{url_for('logout')}}">Log Out</a>
+							{% else %}
 							<a href="{{url_for('login')}}">Log in / Sign up</a>
+							{% endif %}
 						<li>
 						<li>
 							<a href="#">{{ g.user }}</a>
 						<li>
 						<li>
+							{% if g.user %}
 							<a href="{{url_for('addrecipe')}}">New Recipe</a>
+							{% else %}
+							{% endif %}
 						</li>
 					</ul>
 					<ul class="side-nav" id="mobile-nav">
@@ -72,7 +79,6 @@
 <div class="container">
 	{% block content %}{% endblock %}
 </div>
-
 
 
 <footer class="page-footer mt-40 teal">
@@ -108,45 +114,63 @@
         $('.collapsible').collapsible();
         $('select').material_select();
         $(".button-collapse").sideNav();
-	    $('.fixed-action-btn').floatingActionButton();
+        $('.fixed-action-btn').floatingActionButton();
     });
-    
+<!-- Add and Remove ingredients inputs-->
     $(document).ready(function () {
-	    $("#addIngredient").click(function () {
-		   $("#TextBoxDivIngredients").after('<div class="input-field col s12" id="TextBoxDivIngredients">\n' +
-               '                        <div class="col s4 l3 input-field" id="ingredient_name">\n' +
-               '                            <input id="recipe_ingredient_name" name="ingredient_name[]" type="text" value="" required>\n' +
-               '                            <label for="recipe_ingredient_name">Ingredients </label>\n' +
-               '                        </div>\n' +
-               '                        <div class="col s4 l3 input-field" id="ingredient_quantity">\n' +
-               '                            <input id="recipe_ingredient_quantity" name="ingredient_quantity[]" type="number" value="" required>\n' +
-               '                            <label for="recipe_ingredient_quantity">quantity</label>\n' +
-               '                        </div>\n' +
-               '                        <div class="col s4 l3 input-field" id="ingredient_unit">\n' +
-               '                            <input id="recipe_ingredient_unit" name="ingredient_unit[]" type="text" value="" required>\n' +
-               '                            <label for="recipe_ingredient_unit">units</label>\n' +
-               '                        </div>\n' +
-               '                    </div>')
-	    });
+        $("#addIngredient").click(function () {
+            $("#TextBoxDivIngredients").after('<div class="input-field col s12" id="TextBoxDivIngredients">\n' +
+                '                        <div class="col s4 l3 input-field" id="ingredient_name">\n' +
+                '                            <input id="recipe_ingredient_name" name="ingredient_name[]" type="text" value="">\n' +
+                '                            <label for="recipe_ingredient_name">Ingredients </label>\n' +
+                '                        </div>\n' +
+                '                        <div class="col s4 l3 input-field" id="ingredient_quantity">\n' +
+                '                            <input id="recipe_ingredient_quantity" name="ingredient_quantity[]" type="number" value="" >\n' +
+                '                            <label for="recipe_ingredient_quantity">quantity</label>\n' +
+                '                        </div>\n' +
+                '                        <div class="col s4 l3 input-field" id="ingredient_unit">\n' +
+                '                            <input id="recipe_ingredient_unit" name="ingredient_unit[]" type="text" value="" >\n' +
+                '                            <label for="recipe_ingredient_unit">units</label>\n' +
+                '                        </div>\n' +
+                '                    </div>')
+        }),
+            $("#removeIngredient").click(function () {
+                $("#TextBoxDivIngredients").remove('<div class="input-field col s12" id="TextBoxDivIngredients">\n' +
+                    '                        <div class="col s4 l3 input-field" id="ingredient_name">\n' +
+                    '                            <input id="recipe_ingredient_name" name="ingredient_name[]" type="text" value="">\n' +
+                    '                            <label for="recipe_ingredient_name">Ingredients </label>\n' +
+                    '                        </div>\n' +
+                    '                        <div class="col s4 l3 input-field" id="ingredient_quantity">\n' +
+                    '                            <input id="recipe_ingredient_quantity" name="ingredient_quantity[]" type="number" value="" >\n' +
+                    '                            <label for="recipe_ingredient_quantity">quantity</label>\n' +
+                    '                        </div>\n' +
+                    '                        <div class="col s4 l3 input-field" id="ingredient_unit">\n' +
+                    '                            <input id="recipe_ingredient_unit" name="ingredient_unit[]" type="text" value="" >\n' +
+                    '                            <label for="recipe_ingredient_unit">units</label>\n' +
+                    '                        </div>\n' +
+                    '                    </div>')
+
+            });
     });
 </script>
 <!-- Submit search form on click search icon -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#sendForm").click(function () {
-                if ($('#sendFrom').html() != '') {
-                    $("#search-form").submit();
-                }
-            });
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sendForm").click(function () {
+            if ($('#sendFrom').html() != '') {
+                $("#search-form").submit();
+            }
         });
-        $(document).ready(function () {
-            $("#sendFormMobile").click(function () {
-                if ($('#sendFromMobile').html() != '') {
-                    $("#search-form-mobile").submit();
-                }
-            });
+    });
+    $(document).ready(function () {
+        $("#sendFormMobile").click(function () {
+            if ($('#sendFromMobile').html() != '') {
+                $("#search-form-mobile").submit();
+            }
         });
-    </script>
+    });
+</script>
+
 </body>
 
 </html>
