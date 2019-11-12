@@ -1,6 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 
 	<div class="row">
+		<div class="col s12 l6">
+                <div class="card mt-20">
+                    <div class="card-image">
+                        <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_name }}">
+                    </div>
+                </div>
+		</div>
 		<dl class="collapsible" data-collapsible="accordion">
 			<dt><h3 id="recipe-name">  {{ recipe.name }} </h3></dt>
 			<dt><span class="n_service" id="n_service">This recipe is for {{ recipe.n_service }} people</span></dt>
