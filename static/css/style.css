@@ -22,7 +22,9 @@ body{
     font-style: italic; ;
 }
 
-
+.card-image{
+    size: 2px;
+}
 
 /*
 This small part is for the recipe render, I need to adap with all the rest */
@@ -96,12 +98,6 @@ This small part is for the recipe render, I need to adap with all the rest */
     margin-bottom: 5vh;
 }
 
-.mobile-search-bar{
-    margin-top: 15px;
-    color: black;
-    background-color: #fff;
-    border-radius: 30px 30px 30px 30px;
-}
 
 .input-field .mobile-search-bar{
     position: absolute;
@@ -261,7 +257,7 @@ This small part is for the recipe render, I need to adap with all the rest */
 #image {
     margin-top: -10px;
     max-height: 75vh;
-    width: 100%;
+    width: 20%;
 }
 
 .body-custom {
@@ -272,10 +268,6 @@ This small part is for the recipe render, I need to adap with all the rest */
     color: #252627;
 }
 
-.card-img{
-    position: absolute;
-    max-height: 40vh;
-}
 
 .btn_small {
     height: 24px;
