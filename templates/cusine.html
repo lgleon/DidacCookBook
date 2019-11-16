@@ -32,19 +32,10 @@
                     <button class="btn waves-effect waves-light submit-btn mt-20" type="submit" id="cusine-filter-btn">Filter</button>
                 </div>
             </form>
-            
         </div>
         <div class="row mb-10">
-            <div class="col s12 m6 center-align">
-                <form>
-                    <p class="teal-text text-darken-4">Sort All Recipes By: </p>
-                    <button class="btn waves-effect waves-light btn-small" type="submit" name="sort" value="asc">A-Z</button>
-                    <button class="btn waves-effect waves-light btn-small" type="submit" name="sort" value="dsc">Z-A</button>
-                </form>
-            </div>
-            
             <div class="col s12 m6 grey-text text-darken-2 center-align s-mt-20">
-                <a href="{{ url_for('recipes') }}" class="waves-effect waves-light btn-small ml-20">Reset</a>
+                <a href="{{ url_for('cusine') }}" class="waves-effect waves-light btn-small ml-20">Reset</a>
                 <p class="mt-30"><strong>
                 {% if recipes|length <= 0 %}
                     0 Results found...
@@ -68,11 +59,12 @@
                 <div class="col s12 m6 l6 xl4 recipe-card">
                     <div class="card">
                         <div class="card-image">
-                            <img src="{{ recipe.image_url }}" alt="{{ recipe.name }}">
+                            <img src="{{ recipe.image_url }}" alt="{{ recipe.cusine }}">
                         </div>
                         <div class="card-content">
                             <h6>{{ recipe.name}}</h6>
                             <p class="grey-text">{{ recipe.description }}</p>
+                            <button class="btn btn-small " style="background-color: #904E55" type="submit"><a href="{{ url_for('recipe', recipe_id=recipe._id)}}" class=" btn-small m-4 ">View</a></button>
                         </div>
                     </div>
                 </div>

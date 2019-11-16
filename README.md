@@ -156,7 +156,7 @@ Languages, frameworks, libraries, and any other tools used to construct this pro
     - **Github** is used: 
     1. As a remote backup of code used in the project.
     2. As a remote server for another user to see the code used in the project.
-    3. For users to view the deployed version of the website. The deployed version can be viewed [here!](https://lgleon.github.io/genomic_data/).
+    3. For users to view the deployed version of the website. The deployed version can be viewed [here!](https://lgleon.github.io/DidacCookBook/).
 - [Bootstrap](https://www.bootstrapcdn.com/)
     - **Bootstrap** is used to create easier & cleaner responsiveness in addition with helping maintain padding and margins.
     - It's also used to include modal features to the website to give it a professional look.

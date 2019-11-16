@@ -103,31 +103,32 @@ def recipes():
     return render_template('recipes.html', recipes=recipes, )
 
 
-
-
 #Get Recipes by Menu
 @app.route('/menu_recipes')
 def menu_recipes():
     dish_types = set()
-    for recipe in db.recipe.find():
+    recipes = list(db.recipe.find())
+    for recipe in recipes:
         dish_types.add(recipe['dish_type'])
-    return render_template("menu_recipes.html", dish_types=dish_types)
+    return render_template("menu_recipes.html", dish_types=dish_types, recipes=recipes)
 
 #Get Recipes by main course
 @app.route('/main_course')
 def main_course():
     courses = set()
+    recipes = list(db.recipe.find())
     for recipe in db.recipe.find():
         courses.add(recipe['main_course'])
-    return render_template("main_course.html", courses=courses)
+    return render_template("main_course.html", courses=courses, recipes=recipes)
 
 #Get Recipes by Cuisine type
 @app.route('/cusine')
 def cusine():
     cuisines = set()
+    recipes = list(db.recipe.find())
     for recipe in db.recipe.find():
         cuisines.add(recipe['cusine'])
-    return render_template('cusine.html', cuisines=cuisines)
+    return render_template('cusine.html', cuisines=cuisines, recipes=recipes)
 
 
 

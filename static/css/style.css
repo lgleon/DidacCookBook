@@ -220,7 +220,7 @@ body {
 .centered-img {
     /* padding: 15px; */
     /* background: rgba(0, 0, 0, 0.308); */
-    color: #fff;
+    color: #222;
     position: absolute;
     top: 25%;
     left: 50%;
@@ -231,7 +231,7 @@ body {
 .centered-img-mobile {
     padding: 10px;
     background: rgba(0, 0, 0, 0.137);
-    color: #fff;
+    color: #222;
     position: absolute;
     top: 45%;
     left: 50%;
@@ -245,12 +245,18 @@ body {
 #image {
     margin-top: -10px;
     max-height: 75vh;
-    width: 100%;
+    width: 80%;
+}
+
+.didac-text{
+    color: #222222 ;
 }
 
 .body-custom {
-    background-color: rgb(243, 241, 237);
+    /*background-color: rgb(243, 241, 237);*/
+    background-color: #d3d3d3;
 }
+
 
 .strong-text {
     color: #252627;
