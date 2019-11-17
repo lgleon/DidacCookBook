@@ -4,7 +4,7 @@ Didacs Collaborative Cook Book
 </h3>
 
 <h3 align="center">
-https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60
+<img src=https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60>
 </h3>
 
 <div align="center">
@@ -191,7 +191,7 @@ This project was tested for responsiveness using the Chrome Developer Tools.
 The project was built using [PyCharm](https://www.jetbrains.com/pycharm/), through a built-in function called 'Git', I could commit
 the project & push it up to [GitHub](https://github.com/).
 
-- To view the deployed version of [Genomic Data](https://lgleon.github.io/DidacCookBook/) I needed to take the following steps:
+- To view the deployed version of [Didac Cook Book](https://lgleon.github.io/DidacCookBook/) I needed to take the following steps:
     - Log in to [GitHub](https://github.com/).
     - Select **lgleon/genomic_data** from the list of repositories.
     - Select **Settings** from the navbar near the top of the page.
