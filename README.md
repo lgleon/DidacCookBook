@@ -8,7 +8,8 @@ Didacs Collaborative Cook Book
 </h3>
 
 <div align="center">
-[DidacCookBook](https://github.com/lgleon/DidacCookBook.git) This repository contains the 
+
+[Didac Cook Book](https://github.com/lgleon/DidacCookBook.git) This repository contains the 
 code for an online Cookbook application. It is primarily built using Python (back-end) and the 
 Flask framework and uses MongoDB for the database. It also uses the Materialize framework on 
 the front-end.
