@@ -8,41 +8,19 @@ from config import Config
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-#uri = "mongodb://127.0.0.1:27017"
-#client = pymongo.MongoClient(uri)
-#database = client["didaccookbook"]
-#collection = database["recipe"]
-#recipes = collection.find({})
 
-#app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
-#app.config.from_object(Config)
-
-##################################################################
-
-#app.config["MONGO_DBNAME"] = 'DiDacsCookBook'
-#app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
-#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
-# This part is for the connection to atlas MondoDB (remote DB)
-#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/DiDacsCookBook?retryWrites=true&w=majority')
-
-#client = pymongo.MongoClient(os.getenv('MONGO_URI'))
-#db = client.didaccookbook
-
-#mongo = PyMongo(app)
 
 #########################################################################
 #Connecting to the local MondoDB
-
 #uri = "mongodb://127.0.0.1:27017"
 #client = pymongo.MongoClient(uri)
 #db = client.didaccookbook
-#mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/didaccookbook?retryWrites=true&w=majority
+
+
+#Connet with MongoDB Atlas
 uri = "mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/didaccookbook?retryWrites=true&w=majority"
 client = pymongo.MongoClient(uri)
 db = client.didaccookbook
-#database = client["el_luis"]
-#collection = database["new"]
-#recipes = collection.find({})
 
 '''
 To test if the connection with our local mongpdb is working, we can use this for loop
