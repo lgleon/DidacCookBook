@@ -22,14 +22,14 @@ The live project can be viewed [here](https://didacscookbook.herokuapp.com/).
 ## Contents Table
 
 1. [**UX**](#ux)
-    - [**User storires**](#how you experience it as user)
+    - [**User stories**](#your-experience-as-user)
     - [**Design Ideas**](#design-ideas)
     - [**Wireframes**](#wireframes)
 
 2. [**Features**](#features)
     - [**Existing Features**](#existing-features)
     - [**Features Left to Implement**](#features-left-to-implement)
-    - [**Challenges**](#learning challenges)
+    - [**Challenges**](#learning-challenges)
 
 3. [**Technologies Used**](#technologies-used)
 
@@ -124,7 +124,7 @@ There is a paper wireframe, picture included in the folder (readme_info/)
 
 ### Features Left to implement
 
-- A Menu prepararion is an idea that I have to allow users who are logged in to the application to preapre a whole menu, combinng i.e. starters, main and desserts etc.  
+- A Menu preparation is an idea that I have to allow users who are logged in to the application to preapre a whole menu, combinng i.e. starters, main and desserts etc.  
 
 - Unique list of ingredients; The previous feature will be acompained to an implementation for the ingredients, to create a unique list of ingredients with the amounts to prepare the entire menu.
 

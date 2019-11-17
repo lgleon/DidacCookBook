@@ -110,6 +110,14 @@ def menu_recipes():
     recipes = list(db.recipe.find())
     for recipe in recipes:
         dish_types.add(recipe['dish_type'])
+    if 'menu_recipes_select' in request.args:
+        query = request.args['menu_recipes_select']
+        new_recipe_list = []
+        for recipe in recipes:
+            if recipe['dish_type'].lower().find(query.lower()) != -1:
+                new_recipe_list.append(recipe)
+        return render_template('menu_recipes.html', recipes=new_recipe_list)
+
     return render_template("menu_recipes.html", dish_types=dish_types, recipes=recipes)
 
 #Get Recipes by main course
@@ -119,6 +127,14 @@ def main_course():
     recipes = list(db.recipe.find())
     for recipe in db.recipe.find():
         courses.add(recipe['main_course'])
+    if 'main_course_select' in request.args:
+        query = request.args['main_course_select']
+        new_recipe_list = []
+        for recipe in recipes:
+            if recipe['main_course'].lower().find(query.lower()) != -1:
+                new_recipe_list.append(recipe)
+        return render_template('main_course.html', recipes=new_recipe_list)
+
     return render_template("main_course.html", courses=courses, recipes=recipes)
 
 #Get Recipes by Cuisine type
@@ -128,6 +144,14 @@ def cusine():
     recipes = list(db.recipe.find())
     for recipe in db.recipe.find():
         cuisines.add(recipe['cusine'])
+    if 'cuisine_select' in request.args:
+        query = request.args['cuisine_select']
+        new_recipe_list = []
+        for recipe in recipes:
+            if recipe['cusine'].lower().find(query.lower()) != -1:
+                new_recipe_list.append(recipe)
+        return render_template('cusine.html', recipes=new_recipe_list)
+
     return render_template('cusine.html', cuisines=cuisines, recipes=recipes)
 
 
