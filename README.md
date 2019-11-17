@@ -22,7 +22,7 @@ The live project can be viewed [here](https://didacscookbook.herokuapp.com/).
 ## Contents Table
 
 1. [**UX**](#ux)
-    - [**user storires**](#how you experience it as user)
+    - [**User storires**](#how you experience it as user)
     - [**Design Ideas**](#design-ideas)
     - [**Wireframes**](#wireframes)
 
