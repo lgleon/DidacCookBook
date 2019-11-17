@@ -12,15 +12,15 @@ app.secret_key = os.urandom(24)
 
 #########################################################################
 #Connecting to the local MondoDB
-#uri = "mongodb://127.0.0.1:27017"
-#client = pymongo.MongoClient(uri)
-#db = client.didaccookbook
+uri = "mongodb://127.0.0.1:27017"
+client = pymongo.MongoClient(uri)
+db = client.didaccookbook
 
 
 #Connet with MongoDB Atlas
-uri = "mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/didaccookbook?retryWrites=true&w=majority"
-client = pymongo.MongoClient(uri)
-db = client.didaccookbook
+#uri = "mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/didaccookbook?retryWrites=true&w=majority"
+#client = pymongo.MongoClient(uri)
+#db = client.didaccookbook
 
 '''
 To test if the connection with our local mongpdb is working, we can use this for loop
@@ -51,6 +51,7 @@ def home():
 #    return render_template("recipe.html",
 #                          recipes = cursor)
 
+# render one recipe
 @app.route('/recipe/<recipe_id>/')
 def recipe(recipe_id):
     one_recipe = db.recipe.find_one({'_id': ObjectId(recipe_id)})
@@ -134,7 +135,7 @@ def cusine():
 
 
 
-########## Log in and Add recipe(only if you are sign in)
+########## Log in and Add recipe(only if you are log in)
 
 # Manage session user
 @app.before_request
@@ -185,7 +186,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-#Add recipe, only if a member or resgister user
+#Add recipe, only the user is log in
 @app.route('/addrecipe')
 def addrecipe():
     dish_types=["Startes", "Soup", "Salad", "Main", "Dessert"]

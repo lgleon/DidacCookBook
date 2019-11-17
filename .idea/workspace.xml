@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e19cbe2f-4e21-47ee-b595-a481214e9e43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main_course.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/didacscookbook$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1573986843623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/didacscookbook$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1573999797235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -68,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
+            <state relative-caret-position="114">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -229,7 +227,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="10" />
-    <option name="y" value="28" />
+    <option name="y" value="23" />
     <option name="width" value="1260" />
     <option name="height" value="760" />
   </component>
@@ -317,7 +315,7 @@
       <workItem from="1569311035781" duration="1823000" />
       <workItem from="1569313388855" duration="41702000" />
       <workItem from="1569869628920" duration="23473000" />
-      <workItem from="1570730647110" duration="146689000" />
+      <workItem from="1570730647110" duration="149580000" />
     </task>
     <task id="LOCAL-00001" summary="logIn works">
       <created>1572520666372</created>
@@ -508,11 +506,18 @@
       <option name="project" value="LOCAL" />
       <updated>1573982050404</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="cleaning">
+      <created>1573988329982</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1573988329985</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="223160000" />
+    <option name="totallyTimeSpent" value="226051000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,7 +529,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="28" width="1260" height="760" extended-state="0" />
+    <frame x="10" y="23" width="1260" height="760" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989775" visible="true" weight="0.14367816" />
@@ -561,7 +566,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="course and menu add" />
     <MESSAGE value="course and menu corrected" />
     <MESSAGE value="all statics in place" />
     <MESSAGE value="requirements" />
@@ -586,7 +590,8 @@
     <MESSAGE value="working in the filters" />
     <MESSAGE value="fixing readme" />
     <MESSAGE value="fixing readme2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing readme2" />
+    <MESSAGE value="cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaning" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/flask/templating.py">
@@ -765,8 +770,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
+        <state relative-caret-position="114">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
