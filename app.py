@@ -1,7 +1,8 @@
 import os
 from bson.objectid import ObjectId
 import bcrypt
-import pymongo
+#import pymongo
+from flask_pymongo import PyMongo, ASCENDING, DESCENDING
 from flask import Flask, render_template, redirect, url_for, request, session, g
 from config import Config
 
@@ -9,12 +10,16 @@ from config import Config
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
+app.config.from_object(Config)
+
+db = PyMongo(app)
 
 #########################################################################
 #Connecting to the local MondoDB
-uri = "mongodb://127.0.0.1:27017"
-client = pymongo.MongoClient(uri)
-db = client.didaccookbook
+#uri = "mongodb://127.0.0.1:27017"
+#client = pymongo.MongoClient(uri)
+#db = client.didaccookbook
 
 
 #Connet with MongoDB Atlas
@@ -73,13 +78,13 @@ def recipes():
 
     elif 'sort' in request.args:
         if request.args['sort'] == 'asc':
-            new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.ASCENDING))
-            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines)
+            new_recipe_list = list(db.recipes.find().sort('recipe_name', ASCENDING))
+            return render_template('recipes.html', recipes=new_recipe_list)
         elif request.args['sort'] == 'dsc':
-            new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.DESCENDING))
-            return render_template('recipes.html', recipes=new_recipe_list, cuisines=cuisines)
+            new_recipe_list = list(db.recipes.find().sort('recipe_name', DESCENDING))
+            return render_template('recipes.html', recipes=new_recipe_list)
 
-    return render_template('recipes.html', recipes=recipes, )
+    return render_template('recipes.html', recipes=recipes )
 
 
 #Get Recipes by Menu

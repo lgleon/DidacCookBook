@@ -23,28 +23,18 @@
 						<i class="material-icons">menu</i>
 					</a>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
-						<li>
-							<a href="{{url_for('recipes')}}">Recipes</a>
-						<li>
-						<li>
-							<a href="{{url_for('menu_recipes')}}">Menu</a>
-						<li>
-						<li>
-							<a href="{{url_for('main_course')}}">Main</a>
-						<li>
-						<li>
-							<a href="{{url_for('cusine')}}">Cusine</a>
-						<li>
+						<li><a href="{{url_for('recipes')}}">Recipes</a></li>
+						<li><a href="{{url_for('menu_recipes')}}">Menu</a></li>
+						<li><a href="{{url_for('main_course')}}">Main</a></li>
+						<li><a href="{{url_for('cusine')}}">Cusine</a></li>
 						<li>
 							{% if g.user %}
 							<a href="{{url_for('logout')}}">Log Out</a>
 							{% else %}
 							<a href="{{url_for('login')}}">Log in / Sign up</a>
 							{% endif %}
-						<li>
-						<li>
-							<a href="#">{{ g.user }}</a>
-						<li>
+						</li>
+						<li><a href="#">{{ g.user }}</a></li>
 						<li>
 							{% if g.user %}
 							<a href="{{url_for('addrecipe')}}">New Recipe</a>
@@ -52,28 +42,18 @@
 							{% endif %}
 						</li>
 					</ul>
-					<ul class="side-nav" id="mobile-nav">
-						<div class="mobile-nav">
-							<li>
-								<a href="{{url_for('home')}}">Home</a>
-							</li>
-							<li>
-								<a href="{{url_for('recipes')}}">Recipes</a>
-							</li>
-							<li>
-								<a href="{{url_for('cusine')}}">Cuisines</a>
-							</li>
-							<li>
-								<a href="{{url_for('menu_recipes')}}">Food type</a>
-							</li>
-							<li>
-								<a href="{{url_for('main_course')}}">Course type</a>
-							</li>
-						</div>
-					</ul>
 				</div>
 			</div>
 		</nav>
+		<ul class="side-nav" id="mobile-nav">
+			<div class="mobile-nav">
+				<li><a href="{{url_for('home')}}">Home</a></li>
+				<li><a href="{{url_for('recipes')}}">Recipes</a></li>
+				<li><a href="{{url_for('menu_recipes')}}">Menu</a></li>
+				<li><a href="{{url_for('main_course')}}">Main</a></li>
+				<li><a href="{{url_for('cusine')}}">Cusine</a></li>
+			</div>
+		</ul>
 	</div>
 </header>
 <div class="container">
