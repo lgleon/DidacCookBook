@@ -13,11 +13,10 @@ app.secret_key = os.urandom(24)
 app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
 #app.config.from_object(Config)
 #mongo = PyMongo(app)
-#client = pymongo.MongoClient(os.getenv('MONGO_URI'))
-#db = client.cookbook
+
 
 app.config["MONGO_DBNAME"] = 'didaccookbook'
-app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
+#app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
 client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 db = client.didaccookbook
 
