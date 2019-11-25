@@ -166,7 +166,9 @@ def login():
         users = db.users
         login_user = users.find_one({'username': request.form['username']})
         if login_user:
-            if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+            form_password = request.form["password"].encode('utf-8')
+            db_password = login_user["password"]
+            if bcrypt.hashpw(form_password, db_password) == db_password:
                 session['username'] = request.form['username']
                 return redirect(url_for('home'))
 
