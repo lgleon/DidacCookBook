@@ -10,7 +10,8 @@ from config import Config
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
+app.config['MONGO_URI'] = os.environ.get("MONGODB_URI", "mongodb://localhost")
+print(app.config['MONGO_URI'])
 #app.config.from_object(Config)
 #mongo = PyMongo(app)
 
