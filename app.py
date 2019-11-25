@@ -16,7 +16,7 @@ app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
 #client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 #db = client.cookbook
 
-app.config["MONGO_DBNAME"] = 'DiDacsCookBook'
+app.config["MONGO_DBNAME"] = 'didaccookbook'
 app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
 client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 db = client.didaccookbook
