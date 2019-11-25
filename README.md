@@ -194,13 +194,11 @@ the project & push it up to [GitHub](https://github.com/).
 
 - To view the deployed version of [Didac Cook Book](https://lgleon.github.io/DidacCookBook/) I needed to take the following steps:
     - Log in to [GitHub](https://github.com/).
-    - Select **lgleon/genomic_data** from the list of repositories.
+    - Select **lgleon/didaccookbook** from the list of repositories.
     - Select **Settings** from the navbar near the top of the page.
-    - Scroll down to where it says **Github Pages**, there is a subtitle labelled **Source**, click that and change the source to be **master branch**.
-    - The page is automatically refreshed and ready for deployment, it can take up to 5-10 minutes for it to be viewable.
-
+    
 - To add this repository to your local workspace:
-    - Click on the [Genomic Data repository on GitHub!](https://lgleon.github.io/DidacCookBook) link.
+    - Click on the [Didac Cook Book repository on GitHub!](https://lgleon.github.io/DidacCookBook) link.
     - Select the green button on the right-hand side named **Clone or download** and copy the clone URL.
     - Go into your local workspace and open up a new terminal (git bash).
     - You will need to be inside of the directory that you want to add the cloning to.

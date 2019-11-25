@@ -1,7 +1,7 @@
 import os
 from bson.objectid import ObjectId
 import bcrypt
-#import pymongo
+import pymongo
 from flask_pymongo import PyMongo, ASCENDING, DESCENDING
 from flask import Flask, render_template, redirect, url_for, request, session, g
 from config import Config
@@ -11,8 +11,18 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
-app.config.from_object(Config)
-mongo = PyMongo(app)
+#app.config.from_object(Config)
+#mongo = PyMongo(app)
+#client = pymongo.MongoClient(os.getenv('MONGO_URI'))
+#db = client.cookbook
+
+app.config["MONGO_DBNAME"] = 'DiDacsCookBook'
+app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
+client = pymongo.MongoClient(os.getenv('MONGO_URI'))
+db = client.didaccookbook
+
+
+
 
 
 #########################################################################
@@ -21,11 +31,6 @@ mongo = PyMongo(app)
 #client = pymongo.MongoClient(uri)
 #db = client.didaccookbook
 
-
-#Connet with MongoDB Atlas
-#uri = "mongodb+srv://Admin:plomez13@myfirstcluster-mfuzc.mongodb.net/didaccookbook?retryWrites=true&w=majority"
-#client = pymongo.MongoClient(uri)
-#db = client.didaccookbook
 
 '''
 To test if the connection with our local mongpdb is working, we can use this for loop
@@ -59,7 +64,7 @@ def home():
 # render one recipe
 @app.route('/recipe/<recipe_id>/')
 def recipe(recipe_id):
-    one_recipe = mongo.db.recipe.find_one({'_id': ObjectId(recipe_id)})
+    one_recipe = db.recipe.find_one({'_id': ObjectId(recipe_id)})
     #recipe_id = str(one_recipe['recipe_id'])
     return render_template('recipe.html', recipe=one_recipe )
 
@@ -67,7 +72,7 @@ def recipe(recipe_id):
 # Get all recipes
 @app.route('/recipes')
 def recipes():
-    recipes = list(mongo.db.recipe.find())
+    recipes = list(db.recipe.find())
     if 'recipe_search' in request.args:
         query = request.args['recipe_search']
         new_recipe_list = []
@@ -78,10 +83,10 @@ def recipes():
 
     elif 'sort' in request.args:
         if request.args['sort'] == 'asc':
-            new_recipe_list = list(mongo.db.recipes.find().sort('recipe_name', ASCENDING))
+            new_recipe_list = list(db.recipes.find().sort('recipe_name', ASCENDING))
             return render_template('recipes.html', recipes=new_recipe_list)
         elif request.args['sort'] == 'dsc':
-            new_recipe_list = list(mongo.db.recipes.find().sort('recipe_name', DESCENDING))
+            new_recipe_list = list(db.recipes.find().sort('recipe_name', DESCENDING))
             return render_template('recipes.html', recipes=new_recipe_list)
 
     return render_template('recipes.html', recipes=recipes )
@@ -91,7 +96,7 @@ def recipes():
 @app.route('/menu_recipes')
 def menu_recipes():
     dish_types = set()
-    recipes = list(mongo.db.recipe.find())
+    recipes = list(db.recipe.find())
     for recipe in recipes:
         dish_types.add(recipe['dish_type'])
     if 'menu_recipes_select' in request.args:
@@ -108,8 +113,8 @@ def menu_recipes():
 @app.route('/main_course')
 def main_course():
     courses = set()
-    recipes = list(mongo.db.recipe.find())
-    for recipe in mongo.db.recipe.find():
+    recipes = list(db.recipe.find())
+    for recipe in db.recipe.find():
         courses.add(recipe['main_course'])
     if 'main_course_select' in request.args:
         query = request.args['main_course_select']
@@ -125,8 +130,8 @@ def main_course():
 @app.route('/cusine')
 def cusine():
     cuisines = set()
-    recipes = list(mongo.db.recipe.find())
-    for recipe in mongo.db.recipe.find():
+    recipes = list(db.recipe.find())
+    for recipe in db.recipe.find():
         cuisines.add(recipe['cusine'])
     if 'cuisine_select' in request.args:
         query = request.args['cuisine_select']
@@ -159,7 +164,7 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        users = mongo.db.users
+        users = db.users
         login_user = users.find_one({'username': request.form['username']})
         if login_user:
             if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
@@ -172,7 +177,7 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        users = mongo.db.users
+        users = db.users
         existing_user = users.find_one({'username': request.form['username']})
 
         if existing_user is None:
@@ -197,7 +202,7 @@ def addrecipe():
     dish_types=["Startes", "Soup", "Salad", "Main", "Dessert"]
     courses=["Meat Lovers", "Vegeterian", "Vegan"]
     levels=["easy", "medium", "medium-expert", "expert", "5stars michellin"]
-    """for recipe in mongo.db.recipe.find():
+    """for recipe in db.recipe.find():
         dish_types.add(recipe['dish_type'])"""
     return render_template("addrecipe.html", courses=courses, dish_types=dish_types, levels=levels, users=db.users.find())
 
@@ -205,7 +210,7 @@ def addrecipe():
 # Submit add recipe form
 @app.route('/insert_recipe', methods=['POST', 'GET'])
 def insert_recipe():
-    recipes = mongo.db.recipe
+    recipes = db.recipe
 
     recipe_name = request.form['name']
     recipe_description = request.form['description']
