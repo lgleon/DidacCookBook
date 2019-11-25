@@ -10,16 +10,15 @@ from config import Config
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-app.config['MONGO_URI'] = os.environ.get("MONGODB_URI", "mongodb://localhost")
-print(app.config['MONGO_URI'])
+#app.config['MONGO_URI'] = os.environ.get("MONGODB_URI", "mongodb://localhost")
 #app.config.from_object(Config)
 #mongo = PyMongo(app)
 
 
-app.config["MONGO_DBNAME"] = 'didaccookbook'
+#app.config["MONGO_DBNAME"] = 'didaccookbook'
 #app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
-client = pymongo.MongoClient(os.getenv('MONGO_URI'))
-db = client.didaccookbook
+#client = pymongo.MongoClient(os.getenv('MONGO_URI'))
+#db = client.didaccookbook
 
 
 
@@ -27,9 +26,9 @@ db = client.didaccookbook
 
 #########################################################################
 #Connecting to the local MondoDB
-#uri = "mongodb://127.0.0.1:27017"
-#client = pymongo.MongoClient(uri)
-#db = client.didaccookbook
+uri = os.environ.get("MONGODB_URI", "mongodb://localhost") #"mongodb://127.0.0.1:27017"
+client = pymongo.MongoClient(uri)
+db = client.didaccookbook
 
 
 '''
