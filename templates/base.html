@@ -10,6 +10,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css"/>
+	<link rel="stylesheet" href="{{url_for('static', filename='css/hover.css')}}" type="text/css" />
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 			<div class="container">
 				<div class="nav-wrapper">
 					<a href="{{url_for('home')}}" class="brand-logo logo-color">Didac CookBook</a>
-					<a href="#" data-activates="mobile-nav" class="button-collapse right-align">
+					<a href="{{url_for('home')}}" data-activates="mobile-nav" class="button-collapse right-align">
 						<i class="material-icons">menu</i>
 					</a>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -42,18 +43,18 @@
 							{% endif %}
 						</li>
 					</ul>
+					<ul class="side-nav" id="mobile-nav">
+						<div class="mobile-nav">
+							<li><a href="{{url_for('home')}}">Home</a></li>
+							<li><a href="{{url_for('recipes')}}">Recipes</a></li>
+							<li><a href="{{url_for('menu_recipes')}}">Menu</a></li>
+							<li><a href="{{url_for('main_course')}}">Main</a></li>
+							<li><a href="{{url_for('cusine')}}">Cusine</a></li>
+						</div>
+					</ul>
 				</div>
 			</div>
 		</nav>
-		<ul class="side-nav" id="mobile-nav">
-			<div class="mobile-nav">
-				<li><a href="{{url_for('home')}}">Home</a></li>
-				<li><a href="{{url_for('recipes')}}">Recipes</a></li>
-				<li><a href="{{url_for('menu_recipes')}}">Menu</a></li>
-				<li><a href="{{url_for('main_course')}}">Main</a></li>
-				<li><a href="{{url_for('cusine')}}">Cusine</a></li>
-			</div>
-		</ul>
 	</div>
 </header>
 <div class="container">
@@ -76,13 +77,15 @@
 			</div>
 		</div>
 	</div>
-</footer >
+</footer>
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Materialize JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <!-- Font awesome -->
 <script src="https://use.fontawesome.com/d46ec8e634.js"></script>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('.collapsible').collapsible();
@@ -90,7 +93,7 @@
         $(".button-collapse").sideNav();
         $('.fixed-action-btn').floatingActionButton();
     });
-<!-- Add and Remove ingredients inputs-->
+    <!-- Add and Remove ingredients inputs-->
     $(document).ready(function () {
         $("#addIngredient").click(function () {
             $("#TextBoxDivIngredients").after('<div class="input-field col s12" id="TextBoxDivIngredients">\n' +
@@ -108,10 +111,10 @@
                 '                        </div>\n' +
                 '                    </div>')
         }),
-        $("#removeIngredient").click(function () {
-            $("#TextBoxDivIngredients").remove()
+            $("#removeIngredient").click(function () {
+                $("#TextBoxDivIngredients").remove()
 
-        });
+            });
     });
 </script>
 <!-- Submit search form on click search icon -->
